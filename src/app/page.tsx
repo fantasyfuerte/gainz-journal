@@ -20,8 +20,8 @@ export default function Home() {
           src="/logo.svg"
           className="rotate-45"
           alt="Logo"
-          width={75}
-          height={75}
+          width={70}
+          height={70}
         />
       </div>
       <div className="text-secondary">
