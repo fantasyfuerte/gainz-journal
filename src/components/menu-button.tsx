@@ -4,7 +4,7 @@ import { CgClose, CgMenuLeft } from "react-icons/cg";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
-function MenuButton() {
+function MenuButton({ children }: Readonly<{ children: React.ReactNode }>) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -23,11 +23,15 @@ function MenuButton() {
             initial={{ x: "-100%" }}
             animate={{ x: "0" }}
             exit={{ x: "-100%" }}
-            className="absolute top-0 left-0 w-[80%] h-screen z-10 bg-background/90 border-r-2 border-background/80 backdrop-blur-sm"
+            className="absolute top-0 left-0 w-[80%] h-screen z-10 bg-background/80 border-r-2 border-background/80 backdrop-blur-sm p-4"
           >
-            <button onClick={handleClick}>
-              <CgClose size={25} />
-            </button>
+            <div className="flex justify-between">
+              <h4 className="text-center text-xl font-bold">Menu</h4>
+              <button onClick={handleClick}>
+                <CgClose size={25} />
+              </button>
+            </div>
+            {children}
           </motion.div>
         )}
       </AnimatePresence>
