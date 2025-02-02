@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CgHome, CgMenuLeft } from "react-icons/cg";
 
 export const metadata: Metadata = {
   title: "Gainz Journal",
@@ -13,7 +14,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <header>
+          <nav className="flex justify-between items-center p-4 fixed w-full top-0 text-primary">
+            <CgMenuLeft size={30} className="cursor-pointer" />
+            <CgHome size={25} className="cursor-pointer" />
+          </nav>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
