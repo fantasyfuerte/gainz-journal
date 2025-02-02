@@ -17,7 +17,8 @@ export default function Home() {
           Gainz<span className="block text-primary">Journal</span>
         </h1>
         <Image
-          src="/logo.svg"
+          priority
+          src="/logo.png"
           className="rotate-45"
           alt="Logo"
           width={70}
