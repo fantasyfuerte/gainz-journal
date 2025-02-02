@@ -1,9 +1,10 @@
-import { CgHome, CgMenuLeft } from "react-icons/cg";
+import { CgHome } from "react-icons/cg";
+import MenuButton from "./menu-button";
 
 function NavBar() {
   return (
     <nav className="flex justify-between items-center p-4 fixed w-full top-0 text-primary">
-      <CgMenuLeft size={30} className="cursor-pointer" />
+      <MenuButton />
       <CgHome size={25} className="cursor-pointer" />
     </nav>
   );
