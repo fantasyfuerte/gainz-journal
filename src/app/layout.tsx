@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Zen_Dots } from "next/font/google";
-
-const zendots = Zen_Dots({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   title: "Gainz Journal",
@@ -19,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${zendots.className} antialiased`}>{children}</body>
+      <body className={`antialiased`}>{children}</body>
     </html>
   );
 }
