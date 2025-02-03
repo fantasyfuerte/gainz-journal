@@ -2,7 +2,9 @@ import React from 'react'
 
 function NewExercisePage() {
   return (
-    <div>NewExercisePage</div>
+    <main>
+        
+    </main>
   )
 }
 

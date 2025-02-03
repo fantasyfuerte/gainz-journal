@@ -18,7 +18,7 @@ function MenuButton({ children }: Readonly<{ children: React.ReactNode }>) {
       </button>
       <AnimatePresence mode="wait">
         {isOpen && (
-          <motion.div
+          <motion.aside
             transition={{ duration: 0.5 }}
             initial={{ x: "-100%" }}
             animate={{ x: "0" }}
@@ -32,7 +32,7 @@ function MenuButton({ children }: Readonly<{ children: React.ReactNode }>) {
               </button>
             </div>
             {children}
-          </motion.div>
+          </motion.aside>
         )}
       </AnimatePresence>
     </>
