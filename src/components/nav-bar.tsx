@@ -10,9 +10,15 @@ function NavBar() {
           <button className="bg-button rounded-lg py-2 my-3">
             New Exercise
           </button>
-          <ExerciseCard />
-          <ExerciseCard />
-          <ExerciseCard />
+          {/* Mapping over the array of exercises */}
+          <ul className="flex flex-col gap-3">
+            <ExerciseCard />
+            <ExerciseCard />
+            <ExerciseCard />
+            <ExerciseCard />
+            <ExerciseCard />
+            <ExerciseCard />
+          </ul>
         </div>
       </MenuButton>
       <CgHomeAlt size={25} className="cursor-pointer" />
