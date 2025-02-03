@@ -2,9 +2,15 @@
 
 import { CgClose, CgMenuLeft } from "react-icons/cg";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 function MenuButton({ children }: Readonly<{ children: React.ReactNode }>) {
+  const pathname = usePathname();
+  const onPathnameChange = () => setIsOpen(false);
+
+  useEffect(onPathnameChange, [pathname]);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
