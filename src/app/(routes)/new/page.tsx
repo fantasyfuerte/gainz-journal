@@ -15,6 +15,9 @@ function NewExercisePage() {
         aria-multiline="true"
         className="bg-transparent text-secondary/90 outline-none placeholder:text-secondary/90 mt-5 first-line:ml-5 w-full"
       />
+      <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-28 self-end">
+        Save
+      </button>
     </main>
   );
 }
