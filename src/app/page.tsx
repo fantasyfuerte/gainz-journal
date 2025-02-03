@@ -1,6 +1,5 @@
 import ExerciseCard from "@/components/exercise-card";
 import { Zen_Dots } from "next/font/google";
-import Image from "next/image";
 
 const zendots = Zen_Dots({
   subsets: ["latin"],
@@ -12,23 +11,13 @@ export default function Home() {
     <main
       className={`${zendots.className} bg-background h-screen flex flex-col items-center justify-center gap-3`}
     >
-      <div className="flex items-center">
-        <h1 className="text-primary text-3xl font-bold text-center leading-none">
-          Gainz<span className="block text-primary">Journal</span>
-        </h1>
-        <Image
-          priority
-          src="/logo.png"
-          className="rotate-45"
-          alt="Logo"
-          width={70}
-          height={70}
-        />
-      </div>
+      <h1 className="text-primary text-3xl font-bold text-center leading-none">
+        Gainz<span className="block text-primary">Journal</span>
+      </h1>
       <div className="text-secondary">
         <h4 className="mb-2">Last added:</h4>
         {/* Mapping over the array of exercises */}
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-3 w-64">
           <ExerciseCard />
           <ExerciseCard />
           <ExerciseCard />
