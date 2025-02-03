@@ -1,3 +1,5 @@
+import { muscles } from "../../../../data";
+
 function NewExercisePage() {
   const exerciseName = "Exercise Name";
   const exerciseDescription =
@@ -12,17 +14,9 @@ function NewExercisePage() {
       />
       <select className="bg-transparent text-secondary/90 outline-none placeholder:text-secondary/90 w-full">
         <option>Select muscle</option>
-        <option>Chest</option>
-        <option>Back</option>
-        <option>Shoulders</option>
-        <option>Biceps</option>
-        <option>Triceps</option>
-        <option>Hamstrings</option>
-        <option>Quadriceps</option>
-        <option>Femoral</option>
-        <option>Calves</option>
-        <option>Abs</option>
-        <option>Neck</option>
+        {muscles.map((muscle) => (
+          <option key={muscle.name}>{muscle.name}</option>
+        ))}
       </select>
       <textarea
         placeholder={exerciseDescription}
