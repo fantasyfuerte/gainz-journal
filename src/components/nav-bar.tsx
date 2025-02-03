@@ -24,7 +24,9 @@ function NavBar() {
           </ul>
         </div>
       </MenuButton>
-      <CgHomeAlt size={25} className="cursor-pointer" />
+      <Link href="/">
+        <CgHomeAlt size={25} className="cursor-pointer" />
+      </Link>
     </nav>
   );
 }
