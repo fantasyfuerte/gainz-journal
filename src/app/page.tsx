@@ -17,7 +17,7 @@ export default function Home() {
       <div className="text-secondary">
         <h4 className="mb-2">Last added:</h4>
         {/* Mapping over the array of exercises */}
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-3 w-64">
           <ExerciseCard />
           <ExerciseCard />
           <ExerciseCard />
