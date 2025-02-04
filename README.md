@@ -8,7 +8,7 @@
 ✅ Historial de entrenamientos organizados por fecha.  
 ✅ Interfaz intuitiva y fácil de usar.  
 ✅ Almacenamiento local para una experiencia rápida.  
-✅ (Próximamente) Sincronización en la nube y estadísticas avanzadas.  
+✅ (Próximamente) Base de Datos
 
 ## 🛠️ Tecnologías  
 
