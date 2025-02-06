@@ -1,16 +1,26 @@
 "use client";
 
+import React from "react";
 import Select from "react-select";
 
+export type Option = { value: string; label: string };
+
 interface Props {
-  options: { value: string; label: string }[];
+  options: Option[];
   placeholder: string;
+  setValue: (value: string | undefined) => void;
 }
 
-function SelectComponent({ options,placeholder }: Props) {
+function SelectComponent({ options, placeholder, setValue }: Props) {
+  const handleChange = (e: Option) => {
+    if (e == null) setValue(undefined);
+    else setValue(e.value);
+  };
+
   return (
     <Select
-    placeholder={placeholder}
+      placeholder={placeholder}
+      onChange={handleChange as any}
       styles={{
         control: (provided) => ({
           ...provided,

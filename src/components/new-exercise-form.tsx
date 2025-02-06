@@ -2,23 +2,54 @@
 
 import SelectComponent from "./select-component";
 import { muscles } from "@/../data";
-// import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Option } from "./select-component";
 
 function NewExerciseForm() {
   const exerciseDescription =
     "Add a description for your exercise and then press the save button.";
 
-  //   const [muscle, setMuscle] = useState("");
-  //   const [exercise, setExercise] = useState("");
+  const [muscle, setMuscle] = useState<string | undefined>(undefined);
+  const [exercises, setExercises] = useState<Option[]>([]);
 
   const allMuscles = muscles.map((muscle) => ({
     value: muscle.name.toLowerCase(),
     label: muscle.name,
   }));
 
+  function getExercises(muscleName: string) {
+    const muscle = muscles.find(
+      (muscle) => muscle.name.toLowerCase() === muscleName
+    );
+    if (muscle === undefined) return [];
+    return muscle.exercises.map((exercise) => ({
+      value: exercise.name.toLowerCase(),
+      label: exercise.name,
+    }));
+  }
+
+  useEffect(() => {
+    if (muscle === undefined) return;
+    const ex = getExercises(muscle);
+    setExercises(ex);
+    console.log(ex);
+  }, [muscle]);
+
+  console.log(muscle);
   return (
     <form className="flex flex-col gap-5 items-start">
-      <SelectComponent placeholder="Select a muscle" options={allMuscles} />
+      <SelectComponent
+        setValue={setMuscle}
+        placeholder="Select a muscle"
+        options={allMuscles}
+      />
+      {muscle !== undefined && (
+        <SelectComponent
+          setValue={setMuscle}
+          placeholder="Select an exercise"
+          options={exercises}
+        />
+      )}
       <textarea
         className="bg-transparent text-secondary/90 outline-none placeholder:text-secondary/90 first-line:ml-5 w-full"
         placeholder={exerciseDescription}
