@@ -1,5 +1,7 @@
-import SelectComponent from "./select-component";
+"use client";
 
+import SelectComponent from "./select-component";
+import { muscles } from "@/../data";
 // import { useState } from "react";
 
 function NewExerciseForm() {
@@ -9,15 +11,14 @@ function NewExerciseForm() {
   //   const [muscle, setMuscle] = useState("");
   //   const [exercise, setExercise] = useState("");
 
-  const arr = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  const allMuscles = muscles.map((muscle) => ({
+    value: muscle.name.toLowerCase(),
+    label: muscle.name,
+  }));
 
   return (
     <form className="flex flex-col gap-5 items-start">
-      <SelectComponent options={arr} />
+      <SelectComponent options={allMuscles} />
       <textarea
         className="bg-transparent text-secondary/90 outline-none placeholder:text-secondary/90 first-line:ml-5 w-full"
         placeholder={exerciseDescription}
