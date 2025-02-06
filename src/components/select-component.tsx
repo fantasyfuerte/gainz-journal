@@ -4,11 +4,13 @@ import Select from "react-select";
 
 interface Props {
   options: { value: string; label: string }[];
+  placeholder: string;
 }
 
-function SelectComponent({ options }: Props) {
+function SelectComponent({ options,placeholder }: Props) {
   return (
     <Select
+    placeholder={placeholder}
       styles={{
         control: (provided) => ({
           ...provided,

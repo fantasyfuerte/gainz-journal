@@ -18,7 +18,7 @@ function NewExerciseForm() {
 
   return (
     <form className="flex flex-col gap-5 items-start">
-      <SelectComponent options={allMuscles} />
+      <SelectComponent placeholder="Select a muscle" options={allMuscles} />
       <textarea
         className="bg-transparent text-secondary/90 outline-none placeholder:text-secondary/90 first-line:ml-5 w-full"
         placeholder={exerciseDescription}
