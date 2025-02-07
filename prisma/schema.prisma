@@ -9,3 +9,27 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Exercise {
+  id        Int        @id @default(autoincrement())
+  name      String
+  createdAt DateTime   @default(now())
+  trainings Training[]
+}
+
+model Training {
+  id         Int      @id @default(autoincrement())
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  exerciseId Int
+  sets       Set[]
+}
+
+model Set {
+  id         Int      @id @default(autoincrement())
+  training   Training @relation(fields: [trainingId], references: [id])
+  trainingId Int
+  reps       Int
+  weight     Int
+  rest       Int
+  exerciseId Int
+}
