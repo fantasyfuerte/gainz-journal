@@ -5,6 +5,11 @@ import { muscles } from "@/../data";
 import { useEffect, useState } from "react";
 import { Option } from "./select-component";
 
+const HandleForm = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  console.log("Form submitted");
+};
+
 function NewExerciseForm() {
   const exerciseDescription =
     "Add a description for your exercise and then press the save button.";
@@ -37,7 +42,7 @@ function NewExerciseForm() {
 
   console.log(muscle);
   return (
-    <form className="flex flex-col gap-5 items-start">
+    <form onSubmit={HandleForm} className="flex flex-col gap-5 items-start">
       <SelectComponent
         setValue={setMuscle}
         placeholder="Select a muscle"
@@ -55,7 +60,7 @@ function NewExerciseForm() {
         placeholder={exerciseDescription}
         aria-multiline="true"
       />
-      <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+      <button type="submit" className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
         Save
       </button>
     </form>
