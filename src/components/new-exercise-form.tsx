@@ -37,10 +37,8 @@ function NewExerciseForm() {
     if (muscle === undefined) return;
     const ex = getExercises(muscle);
     setExercises(ex);
-    console.log(ex);
   }, [muscle]);
 
-  console.log(muscle);
   return (
     <form onSubmit={HandleForm} className="flex flex-col gap-5 items-start">
       <SelectComponent
@@ -60,7 +58,10 @@ function NewExerciseForm() {
         placeholder={exerciseDescription}
         aria-multiline="true"
       />
-      <button type="submit" className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+      <button
+        type="submit"
+        className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+      >
         Save
       </button>
     </form>
