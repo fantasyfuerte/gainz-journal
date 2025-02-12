@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/libs/prisma";
 
-export function GET() {
-  return NextResponse.json({ message: "Hello from API" });
+export async function GET() {
+  const exercises = await prisma.exercise.findMany();
+  if (exercises.length === 0)
+    return NextResponse.json({ message: "No exercises found" });
+  return NextResponse.json({ exercises: [...exercises] });
 }
