@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import Select from "react-select";
 
 export type Option = { value: string; label: string };
@@ -52,6 +49,7 @@ function SelectComponent({ options, placeholder, setValue }: Props) {
           color: "#fffffe",
           fontWeight: "600",
           fontSize: "20px",
+          zIndex: 10,
         }),
         placeholder: (provided) => ({
           ...provided,

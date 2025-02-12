@@ -29,7 +29,7 @@ function MenuButton({ children }: Readonly<{ children: React.ReactNode }>) {
             initial={{ x: "-100%" }}
             animate={{ x: "0" }}
             exit={{ x: "-100%" }}
-            className="absolute top-0 left-0 w-[85%] sm:w-[70%]  md:w-[50%] lg:w-[40%] xl:w-[30%] h-screen z-10 bg-background/80 border-r-2 border-background/90 backdrop-blur-sm p-4"
+            className="absolute top-0 left-0 w-[85%] sm:w-[70%]  md:w-[50%] lg:w-[40%] xl:w-[30%] h-screen z-50 bg-background/80 border-r-2 border-background/90 backdrop-blur-sm p-4"
           >
             <div className="flex justify-between">
               <h4 className="text-center text-xl font-bold">Menu</h4>
