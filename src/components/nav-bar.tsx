@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function NavBar() {
   return (
-    <nav className="flex justify-between items-center p-4 fixed w-full top-0 text-primary bg-background">
+    <nav className="flex justify-between items-center p-4 fixed w-full top-0 text-primary bg-background z-50">
       <MenuButton>
         <div className="flex flex-col gap-3 py-3 px-2">
           <Link href="/new" className="flex flex-col">

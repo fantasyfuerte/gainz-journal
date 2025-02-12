@@ -15,10 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <header className="z-20">
+        <header className="z-50">
           <NavBar />
         </header>
-        {children}
+        <div className="z-10">{children}</div>
       </body>
     </html>
   );
