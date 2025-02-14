@@ -4,17 +4,21 @@ import SelectComponent from "./select-component";
 import { muscles } from "@/../data";
 import { useEffect, useState } from "react";
 import { Option } from "./select-component";
+import { redirect } from "next/navigation";
 
 function NewExerciseForm() {
-  const exerciseDescription =
-    "Add a description for your exercise and then press the save button.";
-
+  const [exerciseDescription, setExerciseDescription] = useState<string>(
+    "No description provided. Please add a description for your exercise."
+  );
   const [muscle, setMuscle] = useState<string | undefined>(undefined);
   const [exercises, setExercises] = useState<Option[]>([]);
   const [exercise, setExercise] = useState<string | undefined>(undefined);
 
   const HandleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (muscle === undefined || exercise === undefined) return;
+
     fetch("/api/exercises", {
       method: "POST",
       body: JSON.stringify({
@@ -23,6 +27,9 @@ function NewExerciseForm() {
         description: exerciseDescription,
       }),
     });
+    setMuscle(undefined);
+    setExercise(undefined);
+    redirect("/");
   };
 
   const allMuscles = muscles.map((muscle) => ({
@@ -63,8 +70,9 @@ function NewExerciseForm() {
       )}
       <textarea
         className="bg-transparent text-secondary/90 outline-none placeholder:text-secondary/90 first-line:ml-5 w-full"
-        placeholder={exerciseDescription}
+        placeholder={"Add a description for your exercise"}
         aria-multiline="true"
+        onChange={(e) => setExerciseDescription(e.target.value)}
       />
       <button
         type="submit"
