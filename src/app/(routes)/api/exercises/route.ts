@@ -7,3 +7,7 @@ export async function GET() {
     return NextResponse.json({ message: "No exercises found" });
   return NextResponse.json({ exercises: [...exercises] });
 }
+
+export function POST() {
+  return NextResponse.json({ message: "creating exercise" });
+}
