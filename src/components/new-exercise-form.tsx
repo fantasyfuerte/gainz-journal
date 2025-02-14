@@ -23,7 +23,6 @@ function NewExerciseForm() {
         description: exerciseDescription,
       }),
     });
-    console.log("Form submitted");
   };
 
   const allMuscles = muscles.map((muscle) => ({
