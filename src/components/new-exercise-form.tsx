@@ -20,6 +20,7 @@ function NewExerciseForm() {
       body: JSON.stringify({
         muscle: muscle,
         exercise: exercise,
+        description: exerciseDescription,
       }),
     });
     console.log("Form submitted");
