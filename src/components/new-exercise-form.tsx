@@ -4,6 +4,7 @@ import SelectComponent from "./select-component";
 import { muscles } from "@/../data";
 import { useEffect, useState } from "react";
 import { Option } from "./select-component";
+import {redirect} from 'next/navigation';
 
 function NewExerciseForm() {
   const exerciseDescription =
@@ -23,6 +24,9 @@ function NewExerciseForm() {
         description: exerciseDescription,
       }),
     });
+    setMuscle(undefined);
+    setExercise(undefined);
+    redirect("/");
   };
 
   const allMuscles = muscles.map((muscle) => ({
