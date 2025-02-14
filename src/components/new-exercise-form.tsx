@@ -5,10 +5,7 @@ import { muscles } from "@/../data";
 import { useEffect, useState } from "react";
 import { Option } from "./select-component";
 
-const HandleForm = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  console.log("Form submitted");
-};
+
 
 function NewExerciseForm() {
   const exerciseDescription =
@@ -16,6 +13,19 @@ function NewExerciseForm() {
 
   const [muscle, setMuscle] = useState<string | undefined>(undefined);
   const [exercises, setExercises] = useState<Option[]>([]);
+  const [exercise, setExercise] = useState<string | undefined>(undefined);
+
+  const HandleForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    fetch("/api/exercises", {
+      method: "POST",
+      body: JSON.stringify({
+        muscle: muscle,
+        exercise: exercise,
+      }),
+    });
+    console.log("Form submitted");
+  };
 
   const allMuscles = muscles.map((muscle) => ({
     value: muscle.name.toLowerCase(),
@@ -48,7 +58,7 @@ function NewExerciseForm() {
       />
       {muscle !== undefined && (
         <SelectComponent
-          setValue={setMuscle}
+          setValue={setExercise}
           placeholder="Select an exercise"
           options={exercises}
         />
