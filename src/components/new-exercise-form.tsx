@@ -5,8 +5,6 @@ import { muscles } from "@/../data";
 import { useEffect, useState } from "react";
 import { Option } from "./select-component";
 
-
-
 function NewExerciseForm() {
   const exerciseDescription =
     "Add a description for your exercise and then press the save button.";
