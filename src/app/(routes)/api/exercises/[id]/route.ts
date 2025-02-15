@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-export function GET() {
-  return NextResponse.json({ message: "showing exercise" });
+export function GET(request: Request, { params }: { params: { id: number } }) {
+  return NextResponse.json({ message: "showing exercise", params });
 }
 export function DELETE() {
   return NextResponse.json({ message: "deleting exercise" });
