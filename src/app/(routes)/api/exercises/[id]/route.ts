@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
-export function GET(request: Request, { params }: { params: { id: number } }) {
+interface Params {
+  params: { id: number };
+}
+
+export function GET(request: Request, { params }: Params) {
   return NextResponse.json({ message: "showing exercise", params });
 }
 export function DELETE() {
