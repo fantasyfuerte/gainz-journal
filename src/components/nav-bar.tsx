@@ -3,6 +3,13 @@ import MenuButton from "./menu-button";
 import ExerciseCard from "./exercise-card";
 import Link from "next/link";
 
+export type Exercise = {
+  id: number;
+  name: string;
+  description: string;
+  createdAt: string;
+};
+
 async function loadExercises() {
   const response = await fetch("http://localhost:3000/api/exercises");
   const data = await response.json();
@@ -23,8 +30,8 @@ async function NavBar() {
           </Link>
           {/* Mapping over the array of exercises */}
           <ul className="flex flex-col gap-3">
-            {exercises.map((exercise) => (
-              <ExerciseCard key={exercise.id} />
+            {exercises.map((exercise: Exercise) => (
+              <ExerciseCard exercise={exercise} key={exercise.id} />
             ))}
           </ul>
         </div>
