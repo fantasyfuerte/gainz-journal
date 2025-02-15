@@ -10,6 +10,13 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json();
-  console.log(body);
+  const { exercise, description } = body;
+  const newExercise = await prisma.exercise.create({
+    data: {
+      name: exercise,
+      description: description,
+    }
+  })
+  console.log(newExercise)
   return NextResponse.json({ message: "creating exercise" });
 }
