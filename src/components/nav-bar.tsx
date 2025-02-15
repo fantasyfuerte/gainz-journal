@@ -3,7 +3,15 @@ import MenuButton from "./menu-button";
 import ExerciseCard from "./exercise-card";
 import Link from "next/link";
 
-function NavBar() {
+async function loadExercises() {
+  const response = await fetch("http://localhost:3000/api/exercises");
+  const data = await response.json();
+  return data.exercises;
+}
+
+async function NavBar() {
+  const exercises = await loadExercises();
+
   return (
     <nav className="flex justify-between items-center p-4 fixed w-full top-0 text-primary bg-background z-50">
       <MenuButton>
@@ -15,12 +23,9 @@ function NavBar() {
           </Link>
           {/* Mapping over the array of exercises */}
           <ul className="flex flex-col gap-3">
-            <ExerciseCard />
-            <ExerciseCard />
-            <ExerciseCard />
-            <ExerciseCard />
-            <ExerciseCard />
-            <ExerciseCard />
+            {exercises.map((exercise) => (
+              <ExerciseCard key={exercise.id} />
+            ))}
           </ul>
         </div>
       </MenuButton>
