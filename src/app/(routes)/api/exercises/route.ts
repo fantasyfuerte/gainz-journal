@@ -5,7 +5,7 @@ export async function GET() {
   const exercises = await prisma.exercise.findMany();
   if (exercises.length === 0)
     return NextResponse.json({ message: "No exercises found" });
-  return NextResponse.json({ exercises: [...exercises] });
+  return NextResponse.json(exercises);
 }
 
 export async function POST(request: Request) {

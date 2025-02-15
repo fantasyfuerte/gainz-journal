@@ -4,8 +4,8 @@ interface Props {
   exercise: Exercise;
 }
 
-function ExerciseCard(exercise: Props) {
-  const name = exercise.exercise?.name ?? "No name provided";
+function ExerciseCard({exercise}: Props) {
+  const name = exercise?.name ?? "No name provided";
 
   return (
     <li className="font-sans list-none text-secondary bg-secondary/30 py-2 px-4 rounded-lg">
