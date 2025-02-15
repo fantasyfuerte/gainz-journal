@@ -22,7 +22,6 @@ function NewExerciseForm() {
     fetch("/api/exercises", {
       method: "POST",
       body: JSON.stringify({
-        muscle: muscle,
         exercise: exercise,
         description: exerciseDescription,
       }),
