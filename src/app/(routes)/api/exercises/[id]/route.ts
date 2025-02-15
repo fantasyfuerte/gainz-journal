@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
+import {prisma} from '@/libs/prisma';
 
 interface Params {
-  params: { id: number };
+  params: { id: string };
 }
 
-export function GET(request: Request, { params }: Params) {
-  return NextResponse.json({ message: "showing exercise", params });
+export async function GET(request: Request, { params }: Params) {
+  const exercise = await prisma.exercise.findFirst({
+    where: {
+      id: Number(params.id),
+    },
+  });
+
+  return NextResponse.json(exercise);
 }
 export function DELETE() {
   return NextResponse.json({ message: "deleting exercise" });
