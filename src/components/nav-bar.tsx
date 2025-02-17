@@ -2,6 +2,7 @@ import { CgHomeAlt } from "react-icons/cg";
 import MenuButton from "./menu-button";
 import ExerciseCard from "./exercise-card";
 import Link from "next/link";
+import { loadExercises } from "@/libs/fetchs";
 
 export type Exercise = {
   id: number;
@@ -9,12 +10,6 @@ export type Exercise = {
   description: string;
   createdAt: string;
 };
-
-async function loadExercises() {
-  const response = await fetch("http://localhost:3000/api/exercises");
-  const data = await response.json();
-  return data
-}
 
 async function NavBar() {
   const exercises = await loadExercises();
