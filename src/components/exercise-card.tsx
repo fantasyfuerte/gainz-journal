@@ -6,7 +6,7 @@ interface Props {
 }
 
 function ExerciseCard({ exercise }: Props) {
-  const name = exercise?.name ?? "No name provided";
+  const name = exercise?.name ?? "";
   const id = exercise?.id ?? "no-id";
 
   return (

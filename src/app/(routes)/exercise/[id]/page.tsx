@@ -10,8 +10,8 @@ function Capitalize(str: string) {
 
 function ExercisePage() {
   const [exercise, setExercise] = useState({
-    name: "No name provided",
-    description: "No description provided",
+    name: "",
+    description: "",
     muscles: [],
   });
 
@@ -26,7 +26,9 @@ function ExercisePage() {
 
   return (
     <main className="bg-background h-screen pt-16 px-4">
-      <h1 className="text-primary text-xl font-bold">{exercise.name.split(" ").map(Capitalize).join(" ")}</h1>
+      <h1 className="text-primary text-xl font-bold">
+        {exercise.name.split(" ").map(Capitalize).join(" ")}
+      </h1>
     </main>
   );
 }
