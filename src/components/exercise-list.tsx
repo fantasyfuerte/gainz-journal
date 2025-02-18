@@ -1,5 +1,8 @@
+"use client";
+
 import ExerciseCard from "./exercise-card";
 import { loadExercises } from "@/libs/fetchs";
+import { useEffect, useState } from "react";
 
 export type Exercise = {
   id: number;
@@ -12,8 +15,12 @@ interface Props {
   shorter?: boolean;
 }
 
-async function Exercise({ shorter = false }: Props) {
-  const exercises = await loadExercises();
+function Exercise({ shorter = false }: Props) {
+  const [exercises, setExercises] = useState<Exercise[]>([]);
+
+  useEffect(() => {
+    loadExercises().then((data) => setExercises(data));
+  }, []);
 
   return (
     <ul className="flex flex-col gap-3">
