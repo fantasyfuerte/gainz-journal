@@ -1,19 +1,9 @@
 import { CgHomeAlt } from "react-icons/cg";
 import MenuButton from "./menu-button";
-import ExerciseCard from "./exercise-card";
 import Link from "next/link";
-import { loadExercises } from "@/libs/fetchs";
-
-export type Exercise = {
-  id: number;
-  name: string;
-  description: string;
-  createdAt: string;
-};
+import ExerciseFetcher from "./exercise-fetcher";
 
 async function NavBar() {
-  const exercises = await loadExercises();
-
   return (
     <nav className="flex justify-between items-center p-4 fixed w-full top-0 text-primary bg-background z-50">
       <MenuButton>
@@ -24,11 +14,7 @@ async function NavBar() {
             </button>
           </Link>
           {/* Mapping over the array of exercises */}
-          <ul className="flex flex-col gap-3">
-            {exercises.map((exercise: Exercise) => (
-              <ExerciseCard exercise={exercise} key={exercise.id} />
-            ))}
-          </ul>
+          <ExerciseFetcher />
         </div>
       </MenuButton>
       <Link href="/">
