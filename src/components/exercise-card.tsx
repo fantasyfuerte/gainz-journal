@@ -1,4 +1,4 @@
-import { type Exercise } from "@/components/nav-bar";
+import { type Exercise } from "@/components/exercise-fetcher";
 import Link from "next/link";
 
 interface Props {
