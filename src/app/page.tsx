@@ -17,7 +17,7 @@ export default function Home() {
       <div className="text-secondary">
         <h4 className="mb-2">Last added:</h4>
         <div className="w-64">
-          <ExerciseList />
+          <ExerciseList shorter />
         </div>
       </div>
     </main>

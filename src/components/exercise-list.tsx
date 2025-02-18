@@ -1,5 +1,3 @@
-"use client"
-
 import ExerciseCard from "./exercise-card";
 import { loadExercises } from "@/libs/fetchs";
 
@@ -14,16 +12,16 @@ interface Props {
   shorter?: boolean;
 }
 
-function ExerciseList({shorter = false }:Props) {
-  const exercises = ""
+async function Exercise({ shorter = false }: Props) {
+  const exercises = await loadExercises();
 
   return (
     <ul className="flex flex-col gap-3">
-      {exercises.map((exercise: Exercise) => (
+      {exercises.slice(0, shorter ? 3 : undefined).map((exercise: Exercise) => (
         <ExerciseCard exercise={exercise} key={exercise.id} />
       ))}
     </ul>
   );
 }
 
-export default ExerciseList;
+export default Exercise;
