@@ -21,7 +21,12 @@ export async function GET(request: Request, { params }: Params) {
         Number(exercise.createdAt.getMonth() + 1) +
         "/" +
         exercise.createdAt.getFullYear().toString(),
-        time: exercise.createdAt.getHours() + ":" + exercise.createdAt.getMinutes(),
+      time:
+        exercise.createdAt.getHours() > 12
+          ? `${
+              exercise.createdAt.getHours() - 12
+            }:${exercise.createdAt.getMinutes()} PM`
+          : `${exercise.createdAt.getHours()}:${exercise.createdAt.getMinutes()} AM`,
     });
   } catch (e) {
     if (e instanceof Error)
