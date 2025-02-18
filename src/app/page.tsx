@@ -1,4 +1,4 @@
-import ExerciseCard from "@/components/exercise-card";
+import ExerciseList from "@/components/exercise-list";
 import { Zen_Dots } from "next/font/google";
 
 const zendots = Zen_Dots({
@@ -16,12 +16,9 @@ export default function Home() {
       </h1>
       <div className="text-secondary">
         <h4 className="mb-2">Last added:</h4>
-        {/* Mapping over the array of exercises */}
-        <ul className="flex flex-col gap-3 w-64">
-          <ExerciseCard />
-          <ExerciseCard />
-          <ExerciseCard />
-        </ul>
+        <div className="w-64">
+          <ExerciseList shorter />
+        </div>
       </div>
     </main>
   );

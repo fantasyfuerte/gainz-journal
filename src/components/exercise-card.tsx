@@ -1,4 +1,4 @@
-import { type Exercise } from "@/components/nav-bar";
+import { type Exercise } from "@/components/exercise-list";
 import Link from "next/link";
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
 }
 
 function ExerciseCard({ exercise }: Props) {
-  const name = exercise?.name ?? "No name provided";
+  const name = exercise?.name ?? "";
   const id = exercise?.id ?? "no-id";
 
   return (
