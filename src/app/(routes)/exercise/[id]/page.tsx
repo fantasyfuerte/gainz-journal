@@ -13,6 +13,8 @@ function ExercisePage() {
     name: "",
     description: "",
     createdAt: "",
+    date: "",
+    time: "",
   });
 
   const { id } = useParams();
@@ -29,7 +31,8 @@ function ExercisePage() {
       <h1 className="text-xl font-bold text-primary">
         {exercise.name.split(" ").map(Capitalize).join(" ")}
       </h1>
-      <p className="text-secondary/75 mt-2 text-sm">{exercise.createdAt}</p>
+      <p className="text-secondary/75 mt-2 text-sm">{exercise.date}</p>
+      <p className="text-secondary/75 mt-2 text-sm">{exercise.time}</p>
       <textarea
         className="text-secondary/75 mt-2 text-sm pr-5 bg-transparent w-full outline-none"
         value={exercise.description}
