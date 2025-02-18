@@ -1,4 +1,4 @@
-import { type Exercise } from "@/components/exercise-fetcher";
+import { type Exercise } from "@/components/exercise-list";
 import Link from "next/link";
 
 interface Props {

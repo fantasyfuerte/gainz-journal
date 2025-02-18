@@ -1,7 +1,7 @@
 import { CgHomeAlt } from "react-icons/cg";
 import MenuButton from "./menu-button";
 import Link from "next/link";
-import ExerciseFetcher from "./exercise-fetcher";
+import ExerciseList from "./exercise-list";
 
 async function NavBar() {
   return (
@@ -14,7 +14,7 @@ async function NavBar() {
             </button>
           </Link>
           {/* Mapping over the array of exercises */}
-          <ExerciseFetcher />
+          <ExerciseList />
         </div>
       </MenuButton>
       <Link href="/">

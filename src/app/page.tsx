@@ -1,4 +1,4 @@
-import ExerciseFetcher from "@/components/exercise-fetcher";
+import ExerciseList from "@/components/exercise-list";
 import { Zen_Dots } from "next/font/google";
 
 const zendots = Zen_Dots({
@@ -17,7 +17,7 @@ export default function Home() {
       <div className="text-secondary">
         <h4 className="mb-2">Last added:</h4>
         <div className="w-64">
-          <ExerciseFetcher />
+          <ExerciseList />
         </div>
       </div>
     </main>
