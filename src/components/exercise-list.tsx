@@ -9,6 +9,8 @@ export type Exercise = {
   name: string;
   description: string;
   createdAt: string;
+  date: string;
+  time: string;
 };
 
 interface Props {
