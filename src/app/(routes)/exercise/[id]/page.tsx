@@ -12,13 +12,15 @@ function Capitalize(str: string) {
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
-
+  const [description, setDescription] = useState<string>(
+    exercise?.description || ""
+  );
   const { id } = useParams();
 
   useEffect(() => {
     loadExercise(Number(id)).then((data) => {
       setExercise(data);
-      console.log(data);
+      setDescription(data.description);
     });
   }, [id]);
 
@@ -40,10 +42,8 @@ function ExercisePage() {
           </div>
           <textarea
             className="text-secondary/75 mt-2 text-sm pr-5 bg-transparent w-full outline-none"
-            value={exercise.description}
-            onChange={(e) =>
-              setExercise({ ...exercise, description: e.target.value })
-            }
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <h2 className="text-primary/80 text-lg font-semibold mt-8">
             Workouts
