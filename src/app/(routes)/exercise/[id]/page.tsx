@@ -15,6 +15,7 @@ function ExercisePage() {
   const [description, setDescription] = useState<string>(
     exercise?.description || ""
   );
+  const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,6 +24,11 @@ function ExercisePage() {
       setDescription(data.description);
     });
   }, [id]);
+
+  useEffect(() => {
+    if (exercise?.description == description) setSaveButtonVisible(false);
+    else setSaveButtonVisible(true);
+  }, [description, exercise]);
 
   return (
     <main className="bg-background h-screen pt-16 px-4">
@@ -48,6 +54,11 @@ function ExercisePage() {
           <h2 className="text-primary/80 text-lg font-semibold mt-8">
             Workouts
           </h2>
+          {saveButtonVisible && (
+            <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+              Save
+            </button>
+          )}
         </>
       )}
     </main>
