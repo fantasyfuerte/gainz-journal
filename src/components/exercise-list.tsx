@@ -21,7 +21,9 @@ function Exercise({ shorter = false }: Props) {
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
   useEffect(() => {
-    loadExercises().then((data) => setExercises(data));
+    loadExercises()
+      .then((data) => data.sort((a: Exercise, b: Exercise) => b.id - a.id))
+      .then(setExercises);
   }, []);
 
   return (
