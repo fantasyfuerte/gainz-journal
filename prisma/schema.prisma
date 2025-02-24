@@ -23,6 +23,7 @@ model Training {
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int
   sets       Set[]
+  date       DateTime @default(now())
 }
 
 model Set {
