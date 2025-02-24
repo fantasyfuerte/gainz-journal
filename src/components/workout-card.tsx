@@ -1,4 +1,4 @@
-import { Months } from "@/libs/utils";
+import { Months} from "@/libs/utils";
 
 interface Props {
   date: {

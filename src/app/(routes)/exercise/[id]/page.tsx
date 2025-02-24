@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
 import WorkOutCard from "@/components/workout-card";
-
-function Capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { Capitalize } from "@/libs/utils";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);

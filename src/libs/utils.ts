@@ -12,3 +12,7 @@ export const Months = [
     "November",
     "December"
 ]
+
+export function Capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
