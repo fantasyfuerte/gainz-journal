@@ -49,6 +49,22 @@ export async function DELETE(request: Request, { params }: Params) {
   }
 }
 
-export function PUT() {
-  return NextResponse.json({ message: "updating exercise" });
+export async function PUT(request: Request, { params }: Params) {
+  const { description } = await request.json();
+
+  try {
+    const updatedExercise = await prisma.exercise.update({
+      where: {
+        id: Number(params.id),
+      },
+      data: {
+        description,
+      },
+    });
+
+    return NextResponse.json(updatedExercise);
+  } catch (e) {
+    if (e instanceof Error)
+      return NextResponse.json({ message: e.message, status: 404 });
+  }
 }
