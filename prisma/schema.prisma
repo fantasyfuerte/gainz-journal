@@ -32,5 +32,4 @@ model Set {
   trainingId Int
   reps       Int
   weight     Int
-  exerciseId Int
 }
