@@ -5,10 +5,8 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
-
-function Capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import WorkOutCard from "@/components/workout-card";
+import { Capitalize } from "@/libs/utils";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
@@ -51,9 +49,20 @@ function ExercisePage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <h2 className="text-primary/80 text-lg font-semibold mt-8">
-            Workouts
-          </h2>
+          <article>
+            <h2 className="text-primary/90 text-lg font-semibold mt-8">
+              Workouts
+            </h2>
+            <ul className="p-2 grid grid-cols-5 gap-2">
+              <WorkOutCard date={{ day: 11, month: 2 }} />
+              <WorkOutCard date={{ day: 15, month: 2 }} />
+              <WorkOutCard date={{ day: 18, month: 2 }} />
+              <WorkOutCard date={{ day: 22, month: 2 }} />
+              <WorkOutCard date={{ day: 25, month: 2 }} />
+              <WorkOutCard date={{ day: 28, month: 2 }} />
+              <WorkOutCard date={{ day: 1, month: 3 }} />
+            </ul>
+          </article>
           {saveButtonVisible && (
             <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
               Save
