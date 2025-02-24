@@ -57,11 +57,13 @@ function ExercisePage() {
               Workouts
             </h2>
             <ul className="p-2 grid grid-cols-5 gap-2">
-              <WorkOutCard date={{day:11, month:2}} />
-              <WorkOutCard date={{day:15, month:2}} />
-              <WorkOutCard date={{day:18, month:2}} />
-              <WorkOutCard date={{day:22, month:2}} />
-              <WorkOutCard date={{day:25, month:2}} />
+              <WorkOutCard date={{ day: 11, month: 2 }} />
+              <WorkOutCard date={{ day: 15, month: 2 }} />
+              <WorkOutCard date={{ day: 18, month: 2 }} />
+              <WorkOutCard date={{ day: 22, month: 2 }} />
+              <WorkOutCard date={{ day: 25, month: 2 }} />
+              <WorkOutCard date={{ day: 28, month: 2 }} />
+              <WorkOutCard date={{ day: 1, month: 3 }} />
             </ul>
           </article>
           {saveButtonVisible && (
