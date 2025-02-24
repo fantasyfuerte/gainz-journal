@@ -14,3 +14,9 @@ export async function loadExercise(id: number) {
   const data = await response.json();
   return data;
 }
+
+export async function loadTrainings(id: number) {
+  const response = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`);
+  const data = await response.json();
+  return data;
+}
