@@ -7,12 +7,8 @@ import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
+import { Training } from "@prisma/client";
 
-export type Training = {
-  date: string;
-  weight: number;
-  reps: number;
-};
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);

@@ -22,8 +22,8 @@ model Training {
   id         Int      @id @default(autoincrement())
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int
-  sets       Set[]
   date       DateTime @default(now())
+  sets       Set[]
 }
 
 model Set {
