@@ -2,6 +2,7 @@
 
 import ExerciseCard from "./exercise-card";
 import { loadExercises } from "@/libs/fetchs";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
 
@@ -23,17 +24,30 @@ function Exercise({ shorter = false }: Props) {
 
   useEffect(() => {
     loadExercises()
-      .then((data) => data.sort((a: Exercise, b: Exercise) => b.id - a.id))
+      .then((data) => {
+        if (data.message === "No exercises found") return [];
+        return data.sort((a: Exercise, b: Exercise) => b.id - a.id);
+      })
       .then(setExercises);
   }, []);
 
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="flex flex-col gap-3 font-sans">
       {exercises == null ? (
         <CgDisc
           className="animate-spin text-primary/80 mx-auto mt-16"
           size={40}
         />
+      ) : exercises.length === 0 && shorter ? (
+        <>
+          <Link href="/new" className="flex flex-col">
+            <button className="bg-button rounded-lg py-2 my-3 text-primary">
+              New Exercise
+            </button>
+          </Link>
+        </>
+      ) : exercises.length === 0 ? (
+        <p className="text-primary/80 text-center">No exercises found</p>
       ) : (
         exercises
           ?.slice(0, shorter ? 3 : undefined)
