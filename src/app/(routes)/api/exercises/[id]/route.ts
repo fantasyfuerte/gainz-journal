@@ -34,7 +34,7 @@ export async function GET(request: Request, { params }: Params) {
   }
 }
 
-export async function DELETE({ params }: Params) {
+export async function DELETE(request: Request, { params }: Params) {
   try {
     const deletedExercise = await prisma.exercise.delete({
       where: {
