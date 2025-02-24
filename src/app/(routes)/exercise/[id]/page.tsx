@@ -1,18 +1,26 @@
 "use client";
 
-import { loadExercise } from "@/libs/fetchs";
+import { loadExercise, loadTrainings } from "@/libs/fetchs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
-import WorkOutCard from "@/components/workout-card";
 import { Capitalize } from "@/libs/utils";
+import WorkoutsList from "@/components/workouts-list";
+
+export type Training = {
+  date: string;
+  weight: number;
+  reps: number;
+};
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
   const [description, setDescription] = useState<string>(
     exercise?.description || ""
   );
+  const [trainings, setTrainings] = useState<null | Training[]>(null);
+
   const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
   const { id } = useParams();
 
@@ -27,6 +35,12 @@ function ExercisePage() {
     if (exercise?.description == description) setSaveButtonVisible(false);
     else setSaveButtonVisible(true);
   }, [description, exercise]);
+
+  useEffect(() => {
+    loadTrainings(Number(id)).then((data) => {
+      setTrainings(data);
+    });
+  }, [id]);
 
   return (
     <main className="bg-background h-screen pt-16 px-4">
@@ -49,20 +63,7 @@ function ExercisePage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <article>
-            <h2 className="text-primary/90 text-lg font-semibold mt-8">
-              Workouts
-            </h2>
-            <ul className="p-2 grid grid-cols-5 gap-2">
-              <WorkOutCard date={{ day: 11, month: 2 }} />
-              <WorkOutCard date={{ day: 15, month: 2 }} />
-              <WorkOutCard date={{ day: 18, month: 2 }} />
-              <WorkOutCard date={{ day: 22, month: 2 }} />
-              <WorkOutCard date={{ day: 25, month: 2 }} />
-              <WorkOutCard date={{ day: 28, month: 2 }} />
-              <WorkOutCard date={{ day: 1, month: 3 }} />
-            </ul>
-          </article>
+          <WorkoutsList trainings={trainings} />
           {saveButtonVisible && (
             <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
               Save
