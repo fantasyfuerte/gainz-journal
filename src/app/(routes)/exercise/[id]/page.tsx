@@ -7,8 +7,7 @@ import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
-import { Training } from "@prisma/client";
-
+import { Training } from "@/components/workouts-list";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
@@ -60,11 +59,16 @@ function ExercisePage() {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <WorkoutsList trainings={trainings} />
-          {saveButtonVisible && (
+          <ul className="flex gap-2">
             <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
-              Save
+              Add workout
             </button>
-          )}
+            {saveButtonVisible && (
+              <button className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+                Save
+              </button>
+            )}
+          </ul>
         </>
       )}
     </main>
