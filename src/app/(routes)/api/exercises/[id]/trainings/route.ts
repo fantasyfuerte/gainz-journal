@@ -6,7 +6,7 @@ interface Params {
 }
 
 export async function GET(request: Request, { params }: Params) {
-  const { id } = params;
+  const { id } = await params;
   const trainings = await prisma.training.findMany({
     where: {
       exerciseId: Number(id),
@@ -22,8 +22,8 @@ export async function POST(request: Request, { params }: Params) {
   const newTraining = await prisma.training.create({
     data: {
       exerciseId: Number(id),
-    }
-  })
-  console.log(newTraining)
+    },
+  });
+  console.log(newTraining);
   return NextResponse.json({ message: "creating training" });
 }

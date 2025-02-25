@@ -6,10 +6,12 @@ interface Params {
 }
 
 export async function GET(request: Request, { params }: Params) {
+  const { id } = await params;
+
   try {
     const exercise = await prisma.exercise.findFirst({
       where: {
-        id: Number(params.id),
+        id: Number(id),
       },
     });
     if (exercise === null) throw new Error("Exercise not found");
