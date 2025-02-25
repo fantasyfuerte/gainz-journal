@@ -7,7 +7,7 @@ interface Props {
 
 function WorkOutCard({ training }: Props) {
 
-  console.log(training)
+  console.log(training.date)
   // const monthName = month < 12 ? Months[month - 1] : "Invalid month";
 
   return (
