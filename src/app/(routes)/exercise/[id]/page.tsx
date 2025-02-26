@@ -1,6 +1,6 @@
 "use client";
 
-import { loadExercise, loadTrainings } from "@/libs/fetchs";
+import { API_BASE_URL, loadExercise, loadTrainings } from "@/libs/fetchs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
@@ -18,6 +18,17 @@ function ExercisePage() {
 
   const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
   const { id } = useParams();
+
+  async function handleAddWorkout() {
+    const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
+      method: "POST",
+    });
+    if (req.ok) {
+      loadTrainings(Number(id)).then((data) => {
+        setTrainings(data);
+      });
+    }
+  }
 
   useEffect(() => {
     loadExercise(Number(id)).then((data) => {
@@ -60,7 +71,10 @@ function ExercisePage() {
           ></textarea>
           <WorkoutsList trainings={trainings} />
           <ul className="flex gap-2">
-            <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+            <button
+              className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              onClick={handleAddWorkout}
+            >
               Add workout
             </button>
             {saveButtonVisible && (

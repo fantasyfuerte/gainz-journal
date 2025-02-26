@@ -14,22 +14,21 @@ function NewExerciseForm() {
   const [exercises, setExercises] = useState<Option[]>([]);
   const [exercise, setExercise] = useState<string | undefined>(undefined);
 
-  const HandleForm = (e: React.FormEvent<HTMLFormElement>) => {
+  async function HandleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if (muscle === undefined || exercise === undefined) return;
-
     fetch("/api/exercises", {
       method: "POST",
       body: JSON.stringify({
         exercise: exercise,
         description: exerciseDescription,
       }),
-    });
-    setMuscle(undefined);
-    setExercise(undefined);
-    redirect("/");
-  };
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        redirect(`/exercise/${res.id}`);
+      });
+  }
 
   const allMuscles = muscles.map((muscle) => ({
     value: muscle.name.toLowerCase(),
