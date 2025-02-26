@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 
@@ -16,8 +15,10 @@ export async function POST(request: Request) {
     data: {
       name: exercise,
       description: description,
-    }
-  })
-  console.log(newExercise)
-  return NextResponse.json({ message: "creating exercise" });
+    },
+  });
+  return NextResponse.json({
+    message: "creating exercise",
+    id: newExercise.id,
+  });
 }
