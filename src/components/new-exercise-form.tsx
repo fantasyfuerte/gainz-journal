@@ -17,6 +17,7 @@ function NewExerciseForm() {
   async function HandleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (muscle === undefined || exercise === undefined) return;
+
     fetch("/api/exercises", {
       method: "POST",
       body: JSON.stringify({
@@ -26,6 +27,10 @@ function NewExerciseForm() {
     })
       .then((res) => res.json())
       .then((res) => {
+        if (res.status !== 200) {
+          alert(res.message);
+          return;
+        }
         redirect(`/exercise/${res.id}`);
       });
   }
