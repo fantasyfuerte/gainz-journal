@@ -20,10 +20,14 @@ function ExercisePage() {
   const { id } = useParams();
 
   async function handleAddWorkout() {
-     const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
+    const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
       method: "POST",
     });
-    
+    if (req.ok) {
+      loadTrainings(Number(id)).then((data) => {
+        setTrainings(data);
+      });
+    }
   }
 
   useEffect(() => {
@@ -67,7 +71,10 @@ function ExercisePage() {
           ></textarea>
           <WorkoutsList trainings={trainings} />
           <ul className="flex gap-2">
-            <button className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end" onClick={handleAddWorkout}>
+            <button
+              className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              onClick={handleAddWorkout}
+            >
               Add workout
             </button>
             {saveButtonVisible && (
