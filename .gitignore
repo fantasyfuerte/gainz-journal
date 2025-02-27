@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignorar bases de datos SQLite
+prisma/*.db
+prisma/*.db-journal
