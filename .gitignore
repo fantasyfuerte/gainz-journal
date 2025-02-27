@@ -41,5 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Ignorar bases de datos SQLite
-.db
-.db-journal
+prisma/*.db
+prisma/*.db-journal
