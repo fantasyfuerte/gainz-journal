@@ -27,7 +27,7 @@ function NewExerciseForm() {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.status !== 200) {
+        if (res.status == 404) {
           alert(res.message);
           return;
         }
