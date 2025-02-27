@@ -1,6 +1,6 @@
 "use client";
 
-import { API_BASE_URL, loadExercise, loadTrainings } from "@/libs/fetchs";
+import { loadExercise, loadTrainings } from "@/libs/fetchs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
@@ -28,19 +28,6 @@ function ExercisePage() {
 
   function closeModal() {
     setIsModalOpen(false);
-  }
-
-  async function handleAddWorkout() {
-    // const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
-    //   method: "POST",
-    // });
-    // if (req.ok) {
-    //   loadTrainings(Number(id)).then((data) => {
-    //     setTrainings(data);
-    //   });
-    // }
-    alert("Not implemented yet");
-    closeModal();
   }
 
   useEffect(() => {
@@ -96,12 +83,7 @@ function ExercisePage() {
               </button>
             )}
           </ul>
-          {isModalOpen && (
-            <AddWorkOutModal
-              addWorkout={handleAddWorkout}
-              closeModal={closeModal}
-            />
-          )}
+          {isModalOpen && <AddWorkOutModal closeModal={closeModal} />}
         </>
       )}
     </main>
