@@ -8,6 +8,7 @@ import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
 import { Training } from "@/components/workouts-list";
+import AddWorkOutModal from "@/components/add-workout-modal";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
@@ -19,15 +20,27 @@ function ExercisePage() {
   const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
   const { id } = useParams();
 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+
   async function handleAddWorkout() {
-    const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
-      method: "POST",
-    });
-    if (req.ok) {
-      loadTrainings(Number(id)).then((data) => {
-        setTrainings(data);
-      });
-    }
+    // const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
+    //   method: "POST",
+    // });
+    // if (req.ok) {
+    //   loadTrainings(Number(id)).then((data) => {
+    //     setTrainings(data);
+    //   });
+    // }
+    alert("Not implemented yet");
+    closeModal();
   }
 
   useEffect(() => {
@@ -73,7 +86,7 @@ function ExercisePage() {
           <ul className="flex gap-2">
             <button
               className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
-              onClick={handleAddWorkout}
+              onClick={openModal}
             >
               Add workout
             </button>
@@ -83,6 +96,12 @@ function ExercisePage() {
               </button>
             )}
           </ul>
+          {isModalOpen && (
+            <AddWorkOutModal
+              addWorkout={handleAddWorkout}
+              closeModal={closeModal}
+            />
+          )}
         </>
       )}
     </main>
