@@ -7,7 +7,7 @@ import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
-import { Training } from "@/components/workouts-list";
+import { type Training } from "@/components/workouts-list";
 import AddWorkOutModal from "@/components/add-workout-modal";
 
 function ExercisePage() {
@@ -83,7 +83,7 @@ function ExercisePage() {
               </button>
             )}
           </ul>
-          {isModalOpen && <AddWorkOutModal closeModal={closeModal} />}
+          {isModalOpen && <AddWorkOutModal setTrainings={setTrainings} id={id} closeModal={closeModal} />}
         </>
       )}
     </main>

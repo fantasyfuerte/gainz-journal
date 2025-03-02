@@ -1,8 +1,12 @@
+import { API_BASE_URL, loadTrainings } from "@/libs/fetchs";
 import { useState } from "react";
 import { CgTrash } from "react-icons/cg";
+import { type Training } from "./workouts-list";
 
 interface Props {
   closeModal: () => void;
+  id: string | string[] | undefined;
+  setTrainings: (trainings: Training[]) => void;
 }
 
 type Sets = {
@@ -11,20 +15,25 @@ type Sets = {
   id: number;
 };
 
-function AddWorkOutModal({ closeModal }: Props) {
+function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
   const [formOpen, setFormOpen] = useState<boolean>(false);
   const [sets, setSets] = useState<Sets[]>([]);
 
   async function handleAddWorkout() {
-    // const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
-    //   method: "POST",
-    // });
-    // if (req.ok) {
-    //   loadTrainings(Number(id)).then((data) => {
-    //     setTrainings(data);
-    //   });
-    // }
-    alert("Not implemented yet");
+    const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sets: sets,
+      }),
+    });
+    if (req.ok) {
+      loadTrainings(Number(id)).then((data) => {
+        setTrainings(data);
+      });
+    }
     closeModal();
   }
 
@@ -34,7 +43,11 @@ function AddWorkOutModal({ closeModal }: Props) {
     if (weight === 0 || reps === 0) return;
     setSets([
       ...sets,
-      { weight: weight.value, reps: reps.value, id: Math.random() * 1000 },
+      {
+        reps: Number(reps.value),
+        weight: Number(weight.value),
+        id: Math.round(Math.random() * 1000),
+      },
     ]);
     weight.value = "";
     reps.value = "";
