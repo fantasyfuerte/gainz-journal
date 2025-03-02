@@ -38,9 +38,10 @@ export async function GET(request: Request, { params }: Params) {
 
 export async function DELETE(request: Request, { params }: Params) {
   try {
+    const { id } = await params;
     const deletedExercise = await prisma.exercise.delete({
       where: {
-        id: Number(params.id),
+        id: Number(id),
       },
     });
     if (deletedExercise === null) throw new Error("Exercise not found");
