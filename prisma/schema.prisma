@@ -20,7 +20,7 @@ model Exercise {
 
 model Training {
   id         Int      @id @default(autoincrement())
-  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  exercise   Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
   exerciseId Int
   date       DateTime @default(now())
   sets       Set[]
@@ -28,7 +28,7 @@ model Training {
 
 model Set {
   id         Int      @id @default(autoincrement())
-  training   Training @relation(fields: [trainingId], references: [id])
+  training   Training @relation(fields: [trainingId], references: [id], onDelete: Cascade)
   trainingId Int
   reps       Int
   weight     Int
