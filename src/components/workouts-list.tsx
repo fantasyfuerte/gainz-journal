@@ -1,10 +1,10 @@
 import WorkOutCard from "@/components/workout-card";
 
-export interface Training {
+export type Training = {
   id: number;
   date: string;
   exerciseId: number;
-}
+};
 
 interface Props {
   trainings: null | Training[];
