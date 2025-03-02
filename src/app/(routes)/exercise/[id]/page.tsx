@@ -31,6 +31,7 @@ function ExercisePage() {
   }
 
   async function handleDelete() {
+    if (!confirm("Are you sure you want to delete this exercise?")) return;
     deleteExercise(Number(id));
     redirect("/");
   }
