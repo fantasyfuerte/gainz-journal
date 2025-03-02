@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CgTrash } from "react-icons/cg";
 
 interface Props {
   closeModal: () => void;
@@ -74,6 +75,11 @@ function AddWorkOutModal({ closeModal }: Props) {
             <p>
               {set.reps} reps with {set.weight} lbs
             </p>
+            <button
+              onClick={() => setSets(sets.filter((s) => s.id !== set.id))}
+            >
+              <CgTrash size={30} />
+            </button>
           </div>
         ))}
       </div>
