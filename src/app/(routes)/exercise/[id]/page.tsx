@@ -1,6 +1,11 @@
 "use client";
 
-import { deleteExercise, loadExercise, loadTrainings } from "@/libs/fetchs";
+import {
+  deleteExercise,
+  loadExercise,
+  loadTrainings,
+  updateExercise,
+} from "@/libs/fetchs";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
@@ -16,11 +21,11 @@ function ExercisePage() {
     exercise?.description || ""
   );
   const [trainings, setTrainings] = useState<null | Training[]>(null);
-
   const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
-  const { id } = useParams();
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
+
+  const { id } = useParams();
 
   function openModal() {
     setIsModalOpen(true);
@@ -36,12 +41,17 @@ function ExercisePage() {
     redirect("/");
   }
 
+  async function handleUpdate() {
+    updateExercise(Number(id), description);
+    setRefreshTrigger((prev) => !prev);
+  }
+
   useEffect(() => {
     loadExercise(Number(id)).then((data) => {
       setExercise(data);
       setDescription(data.description);
     });
-  }, [id]);
+  }, [id, refreshTrigger]);
 
   useEffect(() => {
     if (exercise?.description == description) setSaveButtonVisible(false);
@@ -76,20 +86,23 @@ function ExercisePage() {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <WorkoutsList trainings={trainings} />
-          <ul className="flex gap-2">
+          <ul className="flex gap-2 flex-wrap mt-12">
             <button
-              className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
               onClick={openModal}
             >
               Add workout
             </button>
             {saveButtonVisible && (
-              <button className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+              <button
+                className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
+                onClick={handleUpdate}
+              >
                 Save
               </button>
             )}
             <button
-              className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
               onClick={handleDelete}
             >
               Delete exercise

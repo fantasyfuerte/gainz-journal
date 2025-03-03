@@ -29,3 +29,15 @@ export async function deleteExercise(id: number) {
   const data = await response.json();
   return data;
 }
+
+export async function updateExercise(id: number, description: string) {
+  const response = await fetch(`${API_BASE_URL}/api/exercises/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ description }),
+  });
+  const data = await response.json();
+  return data;
+}
