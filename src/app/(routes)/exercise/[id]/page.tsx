@@ -1,6 +1,11 @@
 "use client";
 
-import { deleteExercise, loadExercise, loadTrainings } from "@/libs/fetchs";
+import {
+  deleteExercise,
+  loadExercise,
+  loadTrainings,
+  updateExercise,
+} from "@/libs/fetchs";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
@@ -34,6 +39,10 @@ function ExercisePage() {
     if (!confirm("Are you sure you want to delete this exercise?")) return;
     deleteExercise(Number(id));
     redirect("/");
+  }
+
+  async function handleUpdate() {
+    updateExercise(Number(id), description);
   }
 
   useEffect(() => {
@@ -76,20 +85,23 @@ function ExercisePage() {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <WorkoutsList trainings={trainings} />
-          <ul className="flex gap-2">
+          <ul className="flex gap-2 flex-wrap mt-12">
             <button
-              className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
               onClick={openModal}
             >
               Add workout
             </button>
             {saveButtonVisible && (
-              <button className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end">
+              <button
+                className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
+                onClick={handleUpdate}
+              >
                 Save
               </button>
             )}
             <button
-              className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
               onClick={handleDelete}
             >
               Delete exercise
