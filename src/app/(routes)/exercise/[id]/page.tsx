@@ -1,7 +1,7 @@
 "use client";
 
-import { loadExercise, loadTrainings } from "@/libs/fetchs";
-import { useParams } from "next/navigation";
+import { deleteExercise, loadExercise, loadTrainings } from "@/libs/fetchs";
+import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
@@ -28,6 +28,12 @@ function ExercisePage() {
 
   function closeModal() {
     setIsModalOpen(false);
+  }
+
+  async function handleDelete() {
+    if (!confirm("Are you sure you want to delete this exercise?")) return;
+    deleteExercise(Number(id));
+    redirect("/");
   }
 
   useEffect(() => {
@@ -82,8 +88,20 @@ function ExercisePage() {
                 Save
               </button>
             )}
+            <button
+              className="bg-cta text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
+              onClick={handleDelete}
+            >
+              Delete exercise
+            </button>
           </ul>
-          {isModalOpen && <AddWorkOutModal setTrainings={setTrainings} id={id} closeModal={closeModal} />}
+          {isModalOpen && (
+            <AddWorkOutModal
+              setTrainings={setTrainings}
+              id={id}
+              closeModal={closeModal}
+            />
+          )}
         </>
       )}
     </main>

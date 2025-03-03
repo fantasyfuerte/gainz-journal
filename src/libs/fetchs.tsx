@@ -21,3 +21,11 @@ export async function loadTrainings(id: number) {
   if (data.message) return null;
   return data;
 }
+
+export async function deleteExercise(id: number) {
+  const response = await fetch(`${API_BASE_URL}/api/exercises/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  return data;
+}
