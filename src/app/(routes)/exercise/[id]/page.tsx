@@ -55,7 +55,7 @@ function ExercisePage() {
   }, [id]);
 
   return (
-    <main className="bg-background h-screen pt-16 px-4">
+    <main className="bg-background h-screen pt-16 px-7 md:px-60 lg:px-80">
       {exercise === null ? (
         <CgDisc
           className="animate-spin text-primary/80 mx-auto mt-10"
