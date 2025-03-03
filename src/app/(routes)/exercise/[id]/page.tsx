@@ -21,11 +21,11 @@ function ExercisePage() {
     exercise?.description || ""
   );
   const [trainings, setTrainings] = useState<null | Training[]>(null);
-
   const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
-  const { id } = useParams();
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
+
+  const { id } = useParams();
 
   function openModal() {
     setIsModalOpen(true);
@@ -43,6 +43,7 @@ function ExercisePage() {
 
   async function handleUpdate() {
     updateExercise(Number(id), description);
+    setRefreshTrigger((prev) => !prev);
   }
 
   useEffect(() => {
@@ -50,7 +51,7 @@ function ExercisePage() {
       setExercise(data);
       setDescription(data.description);
     });
-  }, [id]);
+  }, [id, refreshTrigger]);
 
   useEffect(() => {
     if (exercise?.description == description) setSaveButtonVisible(false);
