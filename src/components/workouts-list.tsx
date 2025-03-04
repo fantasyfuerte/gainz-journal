@@ -1,5 +1,5 @@
 import WorkOutCard from "@/components/workout-card";
-import { loadSets } from "@/libs/fetchs";
+import { deleteWorkout, loadSets } from "@/libs/fetchs";
 import { Set } from "@prisma/client";
 import { useState } from "react";
 
@@ -12,17 +12,38 @@ export type Training = {
 interface Props {
   trainings: null | Training[];
   exerciseId: string | string[];
+  setRefreshTrigger: (val: boolean) => void;
+  refreshTrigger: boolean;
 }
 
-function WorkoutsList({ exerciseId, trainings }: Props) {
+function WorkoutsList({
+  exerciseId,
+  trainings,
+  setRefreshTrigger,
+  refreshTrigger,
+}: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sets, setSets] = useState<null | Set[]>(null);
+  const [trainingId, setTrainingId] = useState<number>(0);
 
   function openModal(id: number) {
+    setTrainingId(id);
+    try {
+      loadSets(Number(exerciseId), id).then((data) => {
+        setSets(data);
+      });
+    } catch (e: unknown) {
+      console.log(e);
+      return;
+    }
     setIsModalOpen(true);
-    loadSets(Number(exerciseId), id).then((data) => {
-      setSets(data);
-    });
+  }
+
+  function HandleDelete(id: number) {
+    if (!confirm("Are you sure you want to delete this workout?")) return;
+    setIsModalOpen(false);
+    deleteWorkout(Number(exerciseId), id);
+    setRefreshTrigger(!refreshTrigger);
   }
 
   return (
@@ -35,6 +56,12 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
             onClick={() => setIsModalOpen(false)}
           >
             Close modal
+          </button>
+          <button
+            className="text-red-600"
+            onClick={() => HandleDelete(trainingId)}
+          >
+            Delete Workout
           </button>
 
           {sets == null ? (

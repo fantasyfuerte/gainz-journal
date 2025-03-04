@@ -24,6 +24,7 @@ function ExercisePage() {
   const [saveButtonVisible, setSaveButtonVisible] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [refreshTrigger, setRefreshTrigger] = useState(false);
+  const [refreshTrigger2, setRefreshTrigger2] = useState(false);
 
   const { id } = useParams();
 
@@ -62,7 +63,7 @@ function ExercisePage() {
     loadTrainings(Number(id)).then((data) => {
       setTrainings(data);
     });
-  }, [id]);
+  }, [id, refreshTrigger2]);
 
   if (id == undefined) return <div>Not Found.</div>;
 
@@ -87,7 +88,12 @@ function ExercisePage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <WorkoutsList trainings={trainings} exerciseId={id} />
+          <WorkoutsList
+            refreshTrigger={refreshTrigger2}
+            setRefreshTrigger={setRefreshTrigger2}
+            trainings={trainings}
+            exerciseId={id}
+          />
           <ul className="flex gap-2 flex-wrap mt-12">
             <button
               className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
