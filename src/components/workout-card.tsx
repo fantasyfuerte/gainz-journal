@@ -3,10 +3,10 @@ import { Training } from "./workouts-list";
 
 interface Props {
   training: Training;
-  setIsModalOpen: (isModalOpen: boolean) => void;
+  openModal: (id: number) => void;
 }
 
-function WorkOutCard({ training, setIsModalOpen }: Props) {
+function WorkOutCard({ training, openModal }: Props) {
   const day = training.date.split("-")[2].split("T")[0];
   const month = training.date.split("-")[1];
   const monthName = Months[Number(month) - 1];
@@ -14,7 +14,7 @@ function WorkOutCard({ training, setIsModalOpen }: Props) {
   return (
     <li
       className="flex flex-col justify-center border-[1px] border-primary/20 items-center h-12 rounded-md shadow-lg shadow-button/20 max-w-20"
-      onClick={() => setIsModalOpen(true)}
+      onClick={() => openModal(training.id)}
     >
       <p className="font-semibold text-primary/80 leading-none">{day}</p>
       <p className="font-semibold text-primary/80 leading-none">
