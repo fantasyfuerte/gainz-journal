@@ -5,7 +5,7 @@ import { type Training } from "./workouts-list";
 
 interface Props {
   closeModal: () => void;
-  id: string | string[] | undefined;
+  id: string | string[];
   setTrainings: (trainings: Training[]) => void;
 }
 
