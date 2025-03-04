@@ -1,5 +1,5 @@
 import WorkOutCard from "@/components/workout-card";
-import { loadSets } from "@/libs/fetchs";
+import { deleteWorkout, loadSets } from "@/libs/fetchs";
 import { Set } from "@prisma/client";
 import { useState } from "react";
 
@@ -19,10 +19,21 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
   const [sets, setSets] = useState<null | Set[]>(null);
 
   function openModal(id: number) {
+    try {
+      loadSets(Number(exerciseId), id).then((data) => {
+        setSets(data);
+      });
+    } catch (e: unknown) {
+      console.log(e);
+      return;
+    }
     setIsModalOpen(true);
-    loadSets(Number(exerciseId), id).then((data) => {
-      setSets(data);
-    });
+  }
+
+  function HandleDelete(id: number) {
+    if (!confirm("Are you sure you want to delete this workout?")) return;
+    setIsModalOpen(false);
+    deleteWorkout(Number(exerciseId), id);
   }
 
   return (
@@ -36,8 +47,13 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
           >
             Close modal
           </button>
-          <button>
-            Delte Workout
+          <button
+            onClick={() => {
+              const r = sets ? HandleDelete(sets[0].id) : console.log("error");
+              return r;
+            }}
+          >
+            Delete Workout
           </button>
 
           {sets == null ? (
