@@ -12,13 +12,22 @@ export type Training = {
 interface Props {
   trainings: null | Training[];
   exerciseId: string | string[];
+  setRefreshTrigger: (val: boolean) => void;
+  refreshTrigger: boolean;
 }
 
-function WorkoutsList({ exerciseId, trainings }: Props) {
+function WorkoutsList({
+  exerciseId,
+  trainings,
+  setRefreshTrigger,
+  refreshTrigger,
+}: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sets, setSets] = useState<null | Set[]>(null);
+  const [trainingId, setTrainingId] = useState<number>(0);
 
   function openModal(id: number) {
+    setTrainingId(id);
     try {
       loadSets(Number(exerciseId), id).then((data) => {
         setSets(data);
@@ -34,6 +43,7 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
     if (!confirm("Are you sure you want to delete this workout?")) return;
     setIsModalOpen(false);
     deleteWorkout(Number(exerciseId), id);
+    setRefreshTrigger(!refreshTrigger);
   }
 
   return (
@@ -48,10 +58,8 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
             Close modal
           </button>
           <button
-            onClick={() => {
-              const r = sets ? HandleDelete(sets[0].id) : console.log("error");
-              return r;
-            }}
+            className="text-red-600"
+            onClick={() => HandleDelete(trainingId)}
           >
             Delete Workout
           </button>
