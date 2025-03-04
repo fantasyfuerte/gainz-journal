@@ -36,6 +36,9 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
           >
             Close modal
           </button>
+          <button>
+            Delte Workout
+          </button>
 
           {sets == null ? (
             <p className="text-primary/80 text-center mt-4">No sets found</p>
