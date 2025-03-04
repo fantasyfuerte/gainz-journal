@@ -9,10 +9,10 @@ export type Training = {
 
 interface Props {
   trainings: null | Training[];
-  id: string | string[]
+  exerciseId: string | string[];
 }
 
-function WorkoutsList({ trainings, id as exerciseId }: Props) {
+function WorkoutsList({ exerciseId, trainings }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function openModal(id: number) {
