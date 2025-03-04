@@ -29,7 +29,28 @@ function WorkoutsList({ exerciseId, trainings }: Props) {
     <article className="min-h-28">
       <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
       {isModalOpen ? (
-        <div></div>
+        <div>
+          <button
+            className="text-red-500"
+            onClick={() => setIsModalOpen(false)}
+          >
+            Close modal
+          </button>
+
+          {sets == null ? (
+            <p className="text-primary/80 text-center mt-4">No sets found</p>
+          ) : (
+            <ul className="">
+              {sets?.map((set) => (
+                <div key={set.id} className="">
+                  <p className="text-primary/80 text-sm">
+                    {set.reps} reps with {set.weight} lbs
+                  </p>
+                </div>
+              ))}
+            </ul>
+          )}
+        </div>
       ) : (
         <>
           {trainings == null ? (
