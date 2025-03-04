@@ -12,7 +12,6 @@ interface Props {
 }
 
 function WorkoutsList({ trainings }: Props) {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -20,7 +19,7 @@ function WorkoutsList({ trainings }: Props) {
       <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
       {trainings == null ? (
         <p className="text-primary/80 text-center mt-4">No trainings found</p>
-      ) : (s
+      ) : (
         <ul className="p-2 grid grid-cols-5 gap-2">
           {trainings?.map((training) => (
             <WorkOutCard key={training.id} training={training} />
