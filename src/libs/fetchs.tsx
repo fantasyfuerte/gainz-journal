@@ -50,3 +50,14 @@ export async function loadSets(id: number, tid: number) {
   if (data.message) return null;
   return data;
 }
+
+export async function deleteWorkout(id: number, tid: number) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/exercises/${id}/trainings/${tid}`,
+    {
+      method: "DELETE",
+    }
+  );
+  const data = await response.json();
+  if (data.message) return null;
+}
