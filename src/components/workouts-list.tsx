@@ -1,4 +1,6 @@
 import WorkOutCard from "@/components/workout-card";
+import { loadSets } from "@/libs/fetchs";
+import { Set } from "@prisma/client";
 import { useState } from "react";
 
 export type Training = {
@@ -14,9 +16,13 @@ interface Props {
 
 function WorkoutsList({ exerciseId, trainings }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sets, setSets] = useState<null | Set[]>(null);
 
   function openModal(id: number) {
     setIsModalOpen(true);
+    loadSets(Number(exerciseId), id).then((data) => {
+      setSets(data);
+    });
   }
 
   return (
