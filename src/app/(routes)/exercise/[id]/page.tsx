@@ -64,6 +64,8 @@ function ExercisePage() {
     });
   }, [id]);
 
+  if (id == undefined) return <div>Not Found.</div>;
+
   return (
     <main className="bg-background h-screen pt-16 px-7 md:px-60 lg:px-80">
       {exercise === null ? (
@@ -85,7 +87,7 @@ function ExercisePage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <WorkoutsList trainings={trainings} />
+          <WorkoutsList trainings={trainings} exerciseId={id} />
           <ul className="flex gap-2 flex-wrap mt-12">
             <button
               className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
