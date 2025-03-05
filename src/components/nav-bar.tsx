@@ -14,10 +14,6 @@ async function NavBar() {
             </button>
           </Link>
           <ExerciseList />
-          <ExerciseList />
-          <ExerciseList />
-          <ExerciseList />
-          <ExerciseList />
         </div>
       </MenuButton>
       <Link href="/">
