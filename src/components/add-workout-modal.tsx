@@ -1,6 +1,6 @@
 import { API_BASE_URL, loadTrainings } from "@/libs/fetchs";
 import { useState } from "react";
-import { CgClose } from "react-icons/cg";
+import { CgClose, CgMathPlus } from "react-icons/cg";
 import { type Training } from "./workouts-list";
 
 interface Props {
@@ -57,30 +57,33 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
 
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center bg-black/20 backdrop-blur-[2px] z-50 gap-4">
-      <div className="bg-secondary/80 h-52 w-80 rounded-lg p-5">
+      <div className="bg-secondary/80 h-52 w-80 rounded-lg p-2">
         {!formOpen ? (
           <button
             onClick={() => setFormOpen(true)}
-            className="text-primary/80 text-lg font-bold rounded-lg py-2 px-4 bg-button"
+            className="text-primary/80 text-lg font-bold rounded-lg py-2 px-4 bg-button w-full"
           >
             Add Set
           </button>
         ) : (
-          <form onSubmit={addSet}>
+          <form
+            onSubmit={addSet}
+            className="flex justify-center gap-2 flex-wrap"
+          >
             <input
               type="number"
-              className="text-primary/80 text-lg font-bold bg-transparent outline-none inline-block w-16"
+              className="text-primary/80 text-lg font-bold bg-transparent outline-none inline-block basis-1/2 grow text-center"
               placeholder="Weight"
               name="weight"
             />
             <input
               type="number"
-              className="text-primary/80 text-lg font-bold bg-transparent outline-none inline-block w-16"
+              className="text-primary/80 text-lg font-bold bg-transparent outline-none inline-block basis-1/2 grow text-center"
               placeholder="Reps"
               name="reps"
             />
-            <button className="text-primary/80 text-lg font-bold rounded-lg py-2 px-4 bg-button">
-              Add Set
+            <button className="text-primary/80 text-lg font-bold rounded-lg m-1 p-2 bg-button">
+              <CgMathPlus size={30} />
             </button>
           </form>
         )}
