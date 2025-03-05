@@ -81,9 +81,9 @@ function WorkoutsList({
       ) : (
         <>
           {trainings == null ? (
-            <p className="text-primary/80 text-center mt-4">
-              No trainings found
-            </p>
+            <div className="grid place-items-center h-[84px]">
+              <p className="text-primary/80">No trainings found</p>
+            </div>
           ) : (
             <ul className="p-2 grid grid-cols-5 gap-2">
               {trainings?.map((training) => (
