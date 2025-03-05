@@ -13,7 +13,10 @@ export default function Home() {
       className={`${zendots.className} bg-background h-screen flex flex-col items-center justify-center gap-3`}
     >
       <div className="flex items-center justify-center">
-        <h1 className="text-primary text-3xl font-bold leading-none">
+        <h1
+          translate="no"
+          className="text-primary text-3xl font-bold leading-none"
+        >
           <span className="ml-3">Gainz</span>
           <span className="block text-primary">Journal</span>
         </h1>
