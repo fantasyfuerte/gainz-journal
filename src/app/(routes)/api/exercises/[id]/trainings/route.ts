@@ -22,7 +22,7 @@ export async function POST(request: Request, { params }: Params) {
   const { id } = await params;
   const body = await request.json();
   const { sets } = body;
-  console.log(body)
+  console.log(body);
   const newTraining = await prisma.training.create({
     data: {
       exerciseId: Number(id), // Asegúrate de que `id` sea un número válido
