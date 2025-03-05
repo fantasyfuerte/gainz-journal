@@ -81,7 +81,7 @@ function NewExerciseForm() {
         type="submit"
         className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
       >
-        Save
+        Save exercise
       </button>
     </form>
   );
