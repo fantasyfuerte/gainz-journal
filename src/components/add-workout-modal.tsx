@@ -88,14 +88,18 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
           </form>
         )}
         {sets.map((set) => (
-          <div key={set.id} className="flex items-center">
-            <p>
-              {set.reps} reps with {set.weight} lbs
+          <div
+            key={set.id}
+            className="flex justify-between p-3 border-b-[1px] border-primary"
+          >
+            <p className="text-primary/80">
+              <span className="font-bold">{set.reps}</span> reps with{" "}
+              <span className="font-bold">{set.weight}</span> lbs
             </p>
             <button
               onClick={() => setSets(sets.filter((s) => s.id !== set.id))}
             >
-              <CgClose size={20} />
+              <CgClose size={20} className="text-red-500 drop-shadow-lg" />
             </button>
           </div>
         ))}
