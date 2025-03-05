@@ -13,7 +13,6 @@ async function NavBar() {
               New Exercise
             </button>
           </Link>
-          {/* Mapping over the array of exercises */}
           <ExerciseList />
         </div>
       </MenuButton>
