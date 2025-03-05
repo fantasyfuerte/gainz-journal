@@ -94,7 +94,7 @@ function ExercisePage() {
             trainings={trainings}
             exerciseId={id}
           />
-          <ul className="flex gap-2 flex-wrap mt-12">
+          <ul className="flex gap-2 flex-wrap mt-8">
             <button
               className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
               onClick={openModal}
