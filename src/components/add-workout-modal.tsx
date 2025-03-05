@@ -20,6 +20,7 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
   const [sets, setSets] = useState<Sets[]>([]);
 
   async function handleAddWorkout() {
+    if (sets.length === 0) return;
     const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
       method: "POST",
       headers: {
