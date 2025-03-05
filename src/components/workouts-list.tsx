@@ -51,8 +51,8 @@ function WorkoutsList({
     <article className="min-h-28">
       <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
       {isModalOpen ? (
-        <div>
-          <ul className="flex justify-between">
+        <div className="">
+          <ul className="flex justify-between pt-2">
             <button
               className="text-red-500"
               onClick={() => setIsModalOpen(false)}
@@ -69,22 +69,29 @@ function WorkoutsList({
           {sets == null ? (
             <p className="text-primary/80 text-center mt-4">No sets found</p>
           ) : (
-            <ul className="">
+            <table className="w-full text-primary/80">
+              <tr>
+                <th className="text-primary/80 text-sm">Reps</th>
+                <th className="text-primary/80 text-sm">Weight</th>
+              </tr>
               {sets?.map((set) => (
-                <div key={set.id} className="">
-                  <p className="text-primary/80 text-sm">
-                    {set.reps} reps with {set.weight} lbs
-                  </p>
-                </div>
+                <tr key={set.id} className="">
+                  <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                    {set.reps}
+                  </td>
+                  <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                    {set.weight}
+                  </td>
+                </tr>
               ))}
-            </ul>
+            </table>
           )}
         </div>
       ) : (
         <>
           {trainings == null ? (
             <div className="grid place-items-center h-[84px]">
-              <p className="text-primary/80">No trainings found</p>
+              <p className="text-secondary/80">No trainings found</p>
             </div>
           ) : (
             <ul className="p-2 grid grid-cols-5 gap-2">
