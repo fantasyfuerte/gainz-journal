@@ -53,16 +53,10 @@ function WorkoutsList({
       {isModalOpen ? (
         <div className="">
           <ul className="flex justify-between pt-2">
-            <button
-              className="text-red-500"
-              onClick={() => setIsModalOpen(false)}
-            >
+            <button onClick={() => setIsModalOpen(false)}>
               <CgChevronLeft className="text-primary/80" size={25} />
             </button>
-            <button
-              className="text-red-600"
-              onClick={() => HandleDelete(trainingId)}
-            >
+            <button onClick={() => HandleDelete(trainingId)}>
               <CgTrashEmpty className="text-primary/80" size={25} />
             </button>
           </ul>
