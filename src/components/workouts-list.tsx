@@ -2,6 +2,7 @@ import WorkOutCard from "@/components/workout-card";
 import { deleteWorkout, loadSets } from "@/libs/fetchs";
 import { Set } from "@prisma/client";
 import { useState } from "react";
+import { CgChevronLeft, CgTrashEmpty } from "react-icons/cg";
 
 export type Training = {
   id: number;
@@ -51,19 +52,20 @@ function WorkoutsList({
       <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
       {isModalOpen ? (
         <div>
-          <button
-            className="text-red-500"
-            onClick={() => setIsModalOpen(false)}
-          >
-            Close modal
-          </button>
-          <button
-            className="text-red-600"
-            onClick={() => HandleDelete(trainingId)}
-          >
-            Delete Workout
-          </button>
-
+          <ul className="flex justify-between">
+            <button
+              className="text-red-500"
+              onClick={() => setIsModalOpen(false)}
+            >
+              <CgChevronLeft className="text-primary/80" size={25} />
+            </button>
+            <button
+              className="text-red-600"
+              onClick={() => HandleDelete(trainingId)}
+            >
+              <CgTrashEmpty className="text-primary/80" size={25} />
+            </button>
+          </ul>
           {sets == null ? (
             <p className="text-primary/80 text-center mt-4">No sets found</p>
           ) : (
