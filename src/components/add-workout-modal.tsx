@@ -1,6 +1,6 @@
 import { API_BASE_URL, loadTrainings } from "@/libs/fetchs";
 import { useState } from "react";
-import { CgCross } from "react-icons/cg";
+import { CgClose } from "react-icons/cg";
 import { type Training } from "./workouts-list";
 
 interface Props {
@@ -92,7 +92,7 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
             <button
               onClick={() => setSets(sets.filter((s) => s.id !== set.id))}
             >
-              <CgCross size={30} />
+              <CgClose size={20} />
             </button>
           </div>
         ))}
