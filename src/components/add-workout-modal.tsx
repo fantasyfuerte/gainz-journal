@@ -57,7 +57,7 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
 
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center bg-black/20 backdrop-blur-[2px] z-50 gap-4">
-      <div className="bg-secondary/80 h-52 w-80 rounded-lg p-2">
+      <div className="bg-secondary/80 h-52 w-80 rounded-lg p-2 overflow-y-scroll">
         {!formOpen ? (
           <button
             onClick={() => setFormOpen(true)}
