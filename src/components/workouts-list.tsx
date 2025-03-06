@@ -47,6 +47,16 @@ function WorkoutsList({
     setRefreshTrigger(!refreshTrigger);
   }
 
+  function calculateRM(sets: Set[]) {
+    if (sets.length === 0) return 0; // Evitar divisiones por 0
+
+    const estimaciones = sets.map((set) => set.weight * (1 + set.reps / 30));
+    const promedio1RM =
+      estimaciones.reduce((acc, val) => acc + val, 0) / sets.length;
+
+    return Math.round(promedio1RM); // Redondear a 2 decimales
+  }
+
   return (
     <article className="min-h-28">
       <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
@@ -82,6 +92,12 @@ function WorkoutsList({
                   </tr>
                 ))}
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>1RM</th>
+                  <th>{calculateRM(sets)}</th>
+                </tr>
+              </tfoot>
             </table>
           )}
         </div>
