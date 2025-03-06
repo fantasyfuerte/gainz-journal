@@ -48,13 +48,13 @@ function WorkoutsList({
   }
 
   function calculateRM(sets: Set[]) {
-    if (sets.length === 0) return 0; // Evitar divisiones por 0
+    if (sets.length === 0) return 0;
 
     const estimaciones = sets.map((set) => set.weight * (1 + set.reps / 30));
     const promedio1RM =
       estimaciones.reduce((acc, val) => acc + val, 0) / sets.length;
 
-    return Math.round(promedio1RM); // Redondear a 2 decimales
+    return Math.round(promedio1RM);
   }
 
   return (
