@@ -41,7 +41,10 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
   const addSet = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { weight, reps } = e.currentTarget;
-    if (weight === 0 || reps === 0) return;
+    if (Number(weight.value) === 0 || Number(reps.value) === 0) {
+      setFormOpen(false);
+      return;
+    }
     setSets([
       ...sets,
       {
