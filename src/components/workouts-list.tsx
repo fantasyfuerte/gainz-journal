@@ -64,20 +64,24 @@ function WorkoutsList({
             <p className="text-primary/80 text-center mt-4">No sets found</p>
           ) : (
             <table className="w-full text-primary/80">
-              <tr>
-                <th className="text-primary/80 text-sm">Reps</th>
-                <th className="text-primary/80 text-sm">Weight</th>
-              </tr>
-              {sets?.map((set) => (
-                <tr key={set.id} className="">
-                  <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
-                    {set.reps}
-                  </td>
-                  <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
-                    {set.weight}
-                  </td>
+              <thead>
+                <tr>
+                  <th className="text-primary/80 text-sm">Reps</th>
+                  <th className="text-primary/80 text-sm">Weight</th>
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {sets?.map((set) => (
+                  <tr key={set.id} className="">
+                    <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                      {set.reps}
+                    </td>
+                    <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                      {set.weight}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           )}
         </div>
