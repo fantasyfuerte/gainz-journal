@@ -47,6 +47,16 @@ function WorkoutsList({
     setRefreshTrigger(!refreshTrigger);
   }
 
+  function calculateRM(sets: Set[]) {
+    if (sets.length === 0) return 0;
+
+    const estimaciones = sets.map((set) => set.weight * (1 + set.reps / 30));
+    const promedio1RM =
+      estimaciones.reduce((acc, val) => acc + val, 0) / sets.length;
+
+    return Math.round(promedio1RM);
+  }
+
   return (
     <article className="min-h-28">
       <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
@@ -64,20 +74,30 @@ function WorkoutsList({
             <p className="text-primary/80 text-center mt-4">No sets found</p>
           ) : (
             <table className="w-full text-primary/80">
-              <tr>
-                <th className="text-primary/80 text-sm">Reps</th>
-                <th className="text-primary/80 text-sm">Weight</th>
-              </tr>
-              {sets?.map((set) => (
-                <tr key={set.id} className="">
-                  <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
-                    {set.reps}
-                  </td>
-                  <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
-                    {set.weight}
-                  </td>
+              <thead>
+                <tr>
+                  <th className="text-primary/80 text-sm">Reps</th>
+                  <th className="text-primary/80 text-sm">Weight</th>
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {sets?.map((set) => (
+                  <tr key={set.id} className="">
+                    <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                      {set.reps}
+                    </td>
+                    <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                      {set.weight}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>1RM</th>
+                  <th>{calculateRM(sets)}</th>
+                </tr>
+              </tfoot>
             </table>
           )}
         </div>
