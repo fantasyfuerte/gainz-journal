@@ -5,30 +5,16 @@ interface Props {
 }
 
 function Chart({ data }: Props) {
+  const chartData = data.map((data) => ({
+    x: new Date(data.date).toLocaleDateString(),
+    y: data.maxweight,
+  }));
+
   console.log(data);
   return (
     <div className="">
       <VictoryChart theme={VictoryTheme.clean}>
-        <VictoryArea
-          data={[
-            {
-              x: 1,
-              y: 1,
-            },
-            {
-              x: 2,
-              y: 3,
-            },
-            {
-              x: 3,
-              y: 1,
-            },
-            {
-              x: 4,
-              y: 2,
-            },
-          ]}
-        />
+        <VictoryArea data={chartData} />
       </VictoryChart>
     </div>
   );
