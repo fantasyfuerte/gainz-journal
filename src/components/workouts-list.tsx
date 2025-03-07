@@ -138,7 +138,7 @@ function WorkoutsList({
           </>
         )}
       </article>
-      {trainings && trainings.length >= 2 && chartData && (
+      {trainings && trainings.length >= 2 && chartData!== null && (
         <Chart data={chartData} />
       )}
     </>
