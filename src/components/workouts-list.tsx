@@ -3,7 +3,7 @@ import { deleteWorkout, loadSets } from "@/libs/fetchs";
 import { Set, Training } from "@prisma/client";
 import { useState } from "react";
 import { CgChevronLeft, CgTrashEmpty } from "react-icons/cg";
-
+import Chart from "./chart";
 
 interface Props {
   trainings: null | Training[];
@@ -53,69 +53,72 @@ function WorkoutsList({
   }
 
   return (
-    <article className="min-h-28">
-      <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
-      {isModalOpen ? (
-        <div className="">
-          <ul className="flex justify-between pt-2">
-            <button onClick={() => setIsModalOpen(false)}>
-              <CgChevronLeft className="text-primary/80" size={25} />
-            </button>
-            <button onClick={() => HandleDelete(trainingId)}>
-              <CgTrashEmpty className="text-primary/80" size={25} />
-            </button>
-          </ul>
-          {sets == null ? (
-            <p className="text-primary/80 text-center mt-4">No sets found</p>
-          ) : (
-            <table className="w-full text-primary/80">
-              <thead>
-                <tr>
-                  <th className="text-primary/80 text-sm">Reps</th>
-                  <th className="text-primary/80 text-sm">Weight</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sets?.map((set) => (
-                  <tr key={set.id} className="">
-                    <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
-                      {set.reps}
-                    </td>
-                    <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
-                      {set.weight}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>1RM</th>
-                  <th>{calculateRM(sets)}</th>
-                </tr>
-              </tfoot>
-            </table>
-          )}
-        </div>
-      ) : (
-        <>
-          {trainings == null ? (
-            <div className="grid place-items-center h-[84px]">
-              <p className="text-secondary/80">No trainings found</p>
-            </div>
-          ) : (
-            <ul className="p-2 grid grid-cols-5 gap-2">
-              {trainings?.map((training) => (
-                <WorkOutCard
-                  openModal={openModal}
-                  key={training.id}
-                  training={training}
-                />
-              ))}
+    <>
+      <article className="min-h-28">
+        <h2 className="text-primary/90 text-lg font-semibold mt-8">Workouts</h2>
+        {isModalOpen ? (
+          <div className="">
+            <ul className="flex justify-between pt-2">
+              <button onClick={() => setIsModalOpen(false)}>
+                <CgChevronLeft className="text-primary/80" size={25} />
+              </button>
+              <button onClick={() => HandleDelete(trainingId)}>
+                <CgTrashEmpty className="text-primary/80" size={25} />
+              </button>
             </ul>
-          )}
-        </>
-      )}
-    </article>
+            {sets == null ? (
+              <p className="text-primary/80 text-center mt-4">No sets found</p>
+            ) : (
+              <table className="w-full text-primary/80">
+                <thead>
+                  <tr>
+                    <th className="text-primary/80 text-sm">Reps</th>
+                    <th className="text-primary/80 text-sm">Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sets?.map((set) => (
+                    <tr key={set.id} className="">
+                      <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                        {set.reps}
+                      </td>
+                      <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
+                        {set.weight}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>1RM</th>
+                    <th>{calculateRM(sets)}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            )}
+          </div>
+        ) : (
+          <>
+            {trainings == null ? (
+              <div className="grid place-items-center h-[84px]">
+                <p className="text-secondary/80">No trainings found</p>
+              </div>
+            ) : (
+              <ul className="p-2 grid grid-cols-5 gap-2">
+                {trainings?.map((training) => (
+                  <WorkOutCard
+                    openModal={openModal}
+                    key={training.id}
+                    training={training}
+                  />
+                ))}
+              </ul>
+            )}
+          </>
+        )}
+      </article>
+      {trainings && trainings.length >= 2 && <Chart data={chartData} />}
+    </>
   );
 }
 

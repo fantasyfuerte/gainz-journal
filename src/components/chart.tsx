@@ -1,14 +1,10 @@
-import { Training } from "@prisma/client";
 import { VictoryArea, VictoryChart, VictoryTheme } from "victory";
 
 interface Props {
-  trainings: Training[];
+  data: { maxweight: number; date: Date };
 }
 
-function Chart({ trainings }: Props) {
-  if (trainings.length < 2)
-    return <div className="text-red-600 text-xl">No enough data</div>;
-
+function Chart({ data }: Props) {
   return (
     <div className="">
       <VictoryChart theme={VictoryTheme.clean}>
