@@ -42,15 +42,6 @@ export async function updateExercise(id: number, description: string) {
   return data;
 }
 
-export async function loadSets(id: number, tid: number) {
-  const response = await fetch(
-    `${API_BASE_URL}/api/exercises/${id}/trainings/${tid}`
-  );
-  const data = await response.json();
-  if (data.message) return null;
-  return data;
-}
-
 export async function deleteWorkout(id: number, tid: number) {
   const response = await fetch(
     `${API_BASE_URL}/api/exercises/${id}/trainings/${tid}`,
@@ -60,4 +51,20 @@ export async function deleteWorkout(id: number, tid: number) {
   );
   const data = await response.json();
   if (data.message) return null;
+}
+
+export async function loadManySets(id: number, trainingsIds: number[]) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/exercises/${id}/trainings`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ids: trainingsIds, msg: "findmany" }),
+    }
+  );
+  const data = await response.json();
+  if (data.message) return null;
+  return data;
 }
