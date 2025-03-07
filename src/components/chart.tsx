@@ -1,11 +1,11 @@
 import { VictoryArea, VictoryChart, VictoryTheme } from "victory";
 
 interface Props {
-  data: { maxweight: number; date: Date };
+  data: { maxweight: number; date: Date }[];
 }
 
 function Chart({ data }: Props) {
-    console.log(data)
+  console.log(data);
   return (
     <div className="">
       <VictoryChart theme={VictoryTheme.clean}>

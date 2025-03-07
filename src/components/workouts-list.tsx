@@ -1,7 +1,7 @@
 import WorkOutCard from "@/components/workout-card";
 import { deleteWorkout, loadSets } from "@/libs/fetchs";
 import { Set, Training } from "@prisma/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgChevronLeft, CgTrashEmpty } from "react-icons/cg";
 import Chart from "./chart";
 
@@ -18,10 +18,15 @@ function WorkoutsList({
   setRefreshTrigger,
   refreshTrigger,
 }: Props) {
+  // states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sets, setSets] = useState<null | Set[]>(null);
   const [trainingId, setTrainingId] = useState<number>(0);
+  const [chartData, setChartData] = useState<
+    null | { maxweight: number; date: Date }[]
+  >(null);
 
+  // functions
   function openModal(id: number) {
     setTrainingId(id);
     try {
@@ -52,13 +57,21 @@ function WorkoutsList({
     return Math.round(promedio1RM);
   }
 
-  const chartData = trainings?.map((training) => {
-    let maxweight;
-    loadSets(Number(exerciseId), training.id).then((data) => {
-      maxweight = calculateRM(data);
+  // effects
+  useEffect(() => {
+    const Arr: { maxweight: number; date: Date }[] = [];
+    trainings?.forEach((training) => {
+      loadSets(Number(exerciseId), training.id)
+        .then((data) => calculateRM(data))
+        .then((data) =>
+          Arr.push({
+            maxweight: data,
+            date: training.date,
+          })
+        );
     });
-    return { maxweight, date: training.date };
-  });
+    setChartData(Arr);
+  }, [trainings, exerciseId]);
 
   return (
     <>
@@ -125,7 +138,9 @@ function WorkoutsList({
           </>
         )}
       </article>
-      {trainings && trainings.length >= 2 && <Chart data={chartData} />}
+      {trainings && trainings.length >= 2 && chartData && (
+        <Chart data={chartData} />
+      )}
     </>
   );
 }
