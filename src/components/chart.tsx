@@ -5,6 +5,7 @@ interface Props {
 }
 
 function Chart({ data }: Props) {
+    console.log(data)
   return (
     <div className="">
       <VictoryChart theme={VictoryTheme.clean}>
