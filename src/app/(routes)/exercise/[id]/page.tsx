@@ -12,8 +12,8 @@ import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
-import { type Training } from "@/components/workouts-list";
 import AddWorkOutModal from "@/components/add-workout-modal";
+import { Training } from "@prisma/client";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
