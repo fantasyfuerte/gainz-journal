@@ -28,3 +28,4 @@ export async function DELETE(request: Request, { params }: Params) {
     return NextResponse.json({ message: "No trainings found" });
   return NextResponse.json({ message: "Training deleted" });
 }
+
