@@ -14,6 +14,7 @@ import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
 import { type Training } from "@/components/workouts-list";
 import AddWorkOutModal from "@/components/add-workout-modal";
+import Chart from "@/components/chart";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);
@@ -94,6 +95,7 @@ function ExercisePage() {
             trainings={trainings}
             exerciseId={id}
           />
+          {trainings && trainings.length > 2 && <Chart />}
           <ul className="flex gap-2 flex-wrap mt-8">
             <button
               className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 self-end"
