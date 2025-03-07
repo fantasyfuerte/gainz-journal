@@ -1,14 +1,9 @@
 import WorkOutCard from "@/components/workout-card";
 import { deleteWorkout, loadSets } from "@/libs/fetchs";
-import { Set } from "@prisma/client";
+import { Set, Training } from "@prisma/client";
 import { useState } from "react";
 import { CgChevronLeft, CgTrashEmpty } from "react-icons/cg";
 
-export type Training = {
-  id: number;
-  date: string;
-  exerciseId: number;
-};
 
 interface Props {
   trainings: null | Training[];

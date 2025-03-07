@@ -1,9 +1,11 @@
-import React from 'react'
+import { Training } from "@prisma/client";
 
-function Chart() {
-  return (
-    <div className='text-red-600 text-xl'>Chart</div>
-  )
+interface Props {
+  trainings: Training[];
 }
 
-export default Chart
+function Chart({ trainings }: Props) {
+  return <div className="text-red-600 text-xl">Chart</div>;
+}
+
+export default Chart;
