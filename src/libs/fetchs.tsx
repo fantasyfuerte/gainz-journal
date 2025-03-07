@@ -70,7 +70,7 @@ export async function loadManySets(id: number, trainingsIds: number[]) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ids:trainingsIds,msg:"findmany"}),
+      body: JSON.stringify({ ids: trainingsIds, msg: "findmany" }),
     }
   );
   const data = await response.json();

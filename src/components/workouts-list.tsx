@@ -1,5 +1,5 @@
 import WorkOutCard from "@/components/workout-card";
-import { deleteWorkout, loadSets } from "@/libs/fetchs";
+import { deleteWorkout, loadManySets } from "@/libs/fetchs";
 import { Set, Training } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { CgChevronLeft, CgTrashEmpty } from "react-icons/cg";
@@ -21,6 +21,7 @@ function WorkoutsList({
   // states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sets, setSets] = useState<null | Set[]>(null);
+  const [setsToShow, setSetsToShow] = useState<null | Set[]>(null);
   const [trainingId, setTrainingId] = useState<number>(0);
   const [chartData, setChartData] = useState<
     null | { maxweight: number; date: Date }[]
@@ -28,15 +29,9 @@ function WorkoutsList({
 
   // functions
   function openModal(id: number) {
+    if (sets === null) return;
     setTrainingId(id);
-    try {
-      loadSets(Number(exerciseId), id).then((data) => {
-        setSets(data);
-      });
-    } catch (e: unknown) {
-      console.log(e);
-      return;
-    }
+    setSetsToShow(sets.filter((set) => set.trainingId === id));
     setIsModalOpen(true);
   }
 
@@ -60,16 +55,11 @@ function WorkoutsList({
   // effects
   useEffect(() => {
     const Arr: { maxweight: number; date: Date }[] = [];
-    trainings?.forEach((training) => {
-      loadSets(Number(exerciseId), training.id)
-        .then((data) => calculateRM(data))
-        .then((data) =>
-          Arr.push({
-            maxweight: data,
-            date: training.date,
-          })
-        );
-    });
+    const trainingsIds = trainings?.map((training) => training.id);
+    if (trainingsIds === undefined) return;
+    loadManySets(Number(exerciseId), trainingsIds).then((data) =>
+      setSets(data)
+    );
     setChartData(Arr);
   }, [trainings, exerciseId]);
 
@@ -87,7 +77,7 @@ function WorkoutsList({
                 <CgTrashEmpty className="text-primary/80" size={25} />
               </button>
             </ul>
-            {sets == null ? (
+            {setsToShow == null ? (
               <p className="text-primary/80 text-center mt-4">No sets found</p>
             ) : (
               <table className="w-full text-primary/80">
@@ -98,7 +88,7 @@ function WorkoutsList({
                   </tr>
                 </thead>
                 <tbody>
-                  {sets?.map((set) => (
+                  {setsToShow?.map((set) => (
                     <tr key={set.id} className="">
                       <td className="text-primary/80 text-sm border-[1px] border-secondary px-2 text-center">
                         {set.reps}
@@ -112,7 +102,7 @@ function WorkoutsList({
                 <tfoot>
                   <tr>
                     <th>1RM</th>
-                    <th>{calculateRM(sets)}</th>
+                    <th>{calculateRM(setsToShow)}</th>
                   </tr>
                 </tfoot>
               </table>
@@ -138,7 +128,7 @@ function WorkoutsList({
           </>
         )}
       </article>
-      {trainings && trainings.length >= 2 && chartData!== null && (
+      {trainings && trainings.length >= 2 && chartData !== null && (
         <Chart data={chartData} />
       )}
     </>
