@@ -52,6 +52,14 @@ function WorkoutsList({
     return Math.round(promedio1RM);
   }
 
+  const chartData = trainings?.map((training) => {
+    let maxweight;
+    loadSets(Number(exerciseId), training.id).then((data) => {
+      maxweight = calculateRM(data);
+    });
+    return { maxweight, date: training.date };
+  });
+
   return (
     <>
       <article className="min-h-28">
