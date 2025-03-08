@@ -64,12 +64,14 @@ function WorkoutsList({
   useEffect(() => {
     const Arr: { maxweight: number; date: Date }[] = [];
     if (sets === null) return;
-    trainings?.forEach((training) => {
+    trainings?.reverse().forEach((training, index) => {
+      if (index >= 5) return;
       const setsofTraining = sets.filter(
         (set) => set.trainingId === training.id
       );
       Arr.push({ maxweight: calculateRM(setsofTraining), date: training.date });
     });
+    Arr.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     setChartData(Arr);
   }, [trainings, sets]);
 
