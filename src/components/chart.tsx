@@ -11,7 +11,7 @@ function Chart({ data }: Props) {
   }));
 
   return (
-    <div className="z-0">
+    <div className="max-w-96">
       <VictoryArea
         data={chartData}
         interpolation={"natural"}
