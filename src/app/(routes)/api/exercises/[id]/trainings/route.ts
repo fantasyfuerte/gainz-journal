@@ -20,8 +20,8 @@ export async function GET(request: Request, { params }: Params) {
 
 export async function POST(request: Request, { params }: Params) {
   const { id } = await params;
-
   const body = await request.json();
+
   if (body.msg === "findmany") {
     const { ids } = body;
     const sets = await prisma.set.findMany({
@@ -35,8 +35,8 @@ export async function POST(request: Request, { params }: Params) {
       return NextResponse.json({ message: "No sets found" });
     return NextResponse.json(sets);
   }
+
   const { sets } = body;
-  console.log(body);
   const newTraining = await prisma.training.create({
     data: {
       exerciseId: Number(id),
