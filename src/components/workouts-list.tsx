@@ -59,7 +59,7 @@ function WorkoutsList({
     loadManySets(Number(exerciseId), trainingsIds).then((data) =>
       setSets(data)
     );
-  }, [trainings, exerciseId, sets]);
+  }, [trainings, exerciseId]);
 
   useEffect(() => {
     const Arr: { maxweight: number; date: Date }[] = [];
