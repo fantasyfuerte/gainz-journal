@@ -10,7 +10,6 @@ function Chart({ data }: Props) {
     y: data.maxweight,
   }));
 
-  console.log(data);
   return (
     <div className="z-0">
       <VictoryArea
