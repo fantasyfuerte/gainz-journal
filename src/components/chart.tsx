@@ -15,7 +15,13 @@ function Chart({ data }: Props) {
 
   return (
     <div className="max-w-96 mx-auto">
-      <VictoryChart>
+      <VictoryChart
+        style={{
+          parent: {
+            zIndex: 0,
+          },
+        }}
+      >
         <VictoryAxis
           crossAxis
           style={{
@@ -31,9 +37,6 @@ function Chart({ data }: Props) {
           interpolation={"natural"}
           labels={({ datum }) => datum.y}
           style={{
-            parent: {
-              zIndex: 0,
-            },
             data: {
               fill: "#7f5af0",
               fillOpacity: 0.4,
