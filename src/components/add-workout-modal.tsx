@@ -1,7 +1,7 @@
 import { API_BASE_URL, loadTrainings } from "@/libs/fetchs";
+import { Training } from "@prisma/client";
 import { useState } from "react";
 import { CgClose, CgMathPlus } from "react-icons/cg";
-import { type Training } from "./workouts-list";
 
 interface Props {
   closeModal: () => void;
