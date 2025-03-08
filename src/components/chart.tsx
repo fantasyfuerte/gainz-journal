@@ -14,7 +14,7 @@ function Chart({ data }: Props) {
   return (
     <div className="">
       <VictoryChart theme={VictoryTheme.clean}>
-        <VictoryArea data={chartData} />
+        <VictoryArea data={chartData} interpolation={"natural"} />
       </VictoryChart>
     </div>
   );
