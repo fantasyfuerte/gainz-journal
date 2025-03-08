@@ -54,14 +54,24 @@ function WorkoutsList({
 
   // effects
   useEffect(() => {
-    const Arr: { maxweight: number; date: Date }[] = [];
     const trainingsIds = trainings?.map((training) => training.id);
     if (trainingsIds === undefined) return;
     loadManySets(Number(exerciseId), trainingsIds).then((data) =>
       setSets(data)
     );
+  }, [trainings, exerciseId, sets]);
+
+  useEffect(() => {
+    const Arr: { maxweight: number; date: Date }[] = [];
+    if (sets === null) return;
+    trainings?.forEach((training) => {
+      const setsofTraining = sets.filter(
+        (set) => set.trainingId === training.id
+      );
+      Arr.push({ maxweight: calculateRM(setsofTraining), date: training.date });
+    });
     setChartData(Arr);
-  }, [trainings, exerciseId]);
+  }, [trainings, sets]);
 
   return (
     <>
