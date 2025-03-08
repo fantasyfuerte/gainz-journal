@@ -21,16 +21,31 @@ function AddWorkOutModal({ closeModal, id, setTrainings }: Props) {
 
   async function handleAddWorkout() {
     if (sets.length === 0) return;
-    const req = await fetch(`${API_BASE_URL}/api/exercises/${id}/trainings`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sets: sets,
-      }),
-    });
-    if (req.ok) {
+
+    const getReq = await loadTrainings(Number(id));
+    if (getReq !== null) {
+      const trainingsInSameDay = getReq.filter(
+        (training: Training) =>
+          new Date(training.date).toDateString() === new Date().toDateString()
+      );
+      if (trainingsInSameDay.length !== 0) {
+        closeModal();
+        return alert("You can't add more than one workout per day");
+      }
+    }
+    const reqPost = await fetch(
+      `${API_BASE_URL}/api/exercises/${id}/trainings`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sets: sets,
+        }),
+      }
+    );
+    if (reqPost.ok) {
       loadTrainings(Number(id)).then((data) => {
         setTrainings(data);
       });
