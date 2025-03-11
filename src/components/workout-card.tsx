@@ -1,5 +1,5 @@
 import { Months } from "@/libs/utils";
-import { Training } from "./workouts-list";
+import { Training } from "@/types";
 
 interface Props {
   training: Training;
@@ -7,8 +7,8 @@ interface Props {
 }
 
 function WorkOutCard({ training, openModal }: Props) {
-  const day = training.date.split("-")[2].split("T")[0];
-  const month = training.date.split("-")[1];
+  const day = training.date.toString().split("-")[2].split("T")[0];
+  const month = training.date.toString().split("-")[1];
   const monthName = Months[Number(month) - 1];
 
   return (
