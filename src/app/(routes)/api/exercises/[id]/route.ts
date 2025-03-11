@@ -1,12 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 
 interface Params {
   params: { id: string };
 }
 
-export async function GET({ params }: Params) {
-  const { id } = await params;
+export async function GET(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const pathSegments = pathname.split("/");
+  const id = pathSegments[pathSegments.length - 1];
 
   try {
     const exercise = await prisma.exercise.findFirst({
