@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 import { Set } from "@prisma/client";
 
@@ -6,7 +6,7 @@ interface Params {
   params: { id: string };
 }
 
-export async function GET(request: Request, { params }: Params) {
+export async function GET(request: NextRequest, { params }: Params) {
   const { id } = await params;
   const trainings = await prisma.training.findMany({
     where: {
