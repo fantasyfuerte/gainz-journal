@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 
-interface Params {
-  params: { id: string };
-}
-
 export async function GET(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const pathSegments = pathname.split("/");
@@ -40,9 +36,12 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: Request, { params }: Params) {
+export async function DELETE(request: NextRequest) {
   try {
-    const { id } = await params;
+    const pathname = request.nextUrl.pathname;
+    const pathSegments = pathname.split("/");
+    const id = pathSegments[pathSegments.length - 1];
+
     const deletedExercise = await prisma.exercise.delete({
       where: {
         id: Number(id),
@@ -56,13 +55,17 @@ export async function DELETE(request: Request, { params }: Params) {
   }
 }
 
-export async function PUT(request: Request, { params }: Params) {
+export async function PUT(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const pathSegments = pathname.split("/");
+  const id = pathSegments[pathSegments.length - 1];
+
   const { description } = await request.json();
 
   try {
     const updatedExercise = await prisma.exercise.update({
       where: {
-        id: Number(params.id),
+        id: Number(id),
       },
       data: {
         description,
