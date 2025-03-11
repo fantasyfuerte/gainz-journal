@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
-
-type Set = {
-  id: number;
-  trainingId: number;
-  reps: number;
-  weight: number;
-};
+import { Set } from "@/types";
 
 export async function GET(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
