@@ -44,7 +44,9 @@ function ExercisePage() {
 
   async function handleUpdate() {
     updateExercise(Number(id), description);
-    setRefreshTrigger((prev) => !prev);
+    setTimeout(() => {
+      setRefreshTrigger((prev) => !prev);
+    }, 500);
   }
 
   useEffect(() => {
