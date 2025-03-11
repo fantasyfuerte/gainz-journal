@@ -18,7 +18,7 @@ export async function GET(request: NextRequest, { params }: Params) {
   return NextResponse.json(trainings);
 }
 
-export async function POST(request: Request, { params }: Params) {
+export async function POST(request: NextRequest, { params }: Params) {
   const { id } = await params;
   const body = await request.json();
 
