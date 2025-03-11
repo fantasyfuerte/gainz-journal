@@ -5,7 +5,7 @@ interface Params {
   params: { id: string };
 }
 
-export async function GET(request: Request, { params }: Params) {
+export async function GET({ params }: Params) {
   const { id } = await params;
 
   try {
