@@ -13,7 +13,7 @@ import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
 import AddWorkOutModal from "@/components/add-workout-modal";
-import { Training } from "@prisma/client";
+import { Training } from "@/types";
 
 function ExercisePage() {
   const [exercise, setExercise] = useState<null | Exercise>(null);

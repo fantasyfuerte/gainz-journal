@@ -22,8 +22,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (existingExercise !== null)
-      throw new Error("Exercise already exists");
+    if (existingExercise !== null) throw new Error("Exercise already exists");
 
     const newExercise = await prisma.exercise.create({
       data: {

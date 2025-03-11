@@ -1,5 +1,5 @@
 import { API_BASE_URL, loadTrainings } from "@/libs/fetchs";
-import { Training } from "@prisma/client";
+import { Training } from "@/types";
 import { useState } from "react";
 import { CgClose, CgMathPlus } from "react-icons/cg";
 

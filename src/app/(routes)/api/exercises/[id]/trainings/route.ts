@@ -1,13 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
-import { Set } from "@prisma/client";
+import { Set } from "@/types";
 
-interface Params {
-  params: { id: string };
-}
+export async function GET(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const pathSegments = pathname.split("/");
+  const id = pathSegments[pathSegments.length - 2];
 
-export async function GET(request: Request, { params }: Params) {
-  const { id } = await params;
   const trainings = await prisma.training.findMany({
     where: {
       exerciseId: Number(id),
@@ -18,8 +17,11 @@ export async function GET(request: Request, { params }: Params) {
   return NextResponse.json(trainings);
 }
 
-export async function POST(request: Request, { params }: Params) {
-  const { id } = await params;
+export async function POST(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const pathSegments = pathname.split("/");
+  const id = pathSegments[pathSegments.length - 2];
+
   const body = await request.json();
 
   if (body.msg === "findmany") {
