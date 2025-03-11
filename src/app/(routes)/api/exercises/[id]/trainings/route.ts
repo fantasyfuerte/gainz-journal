@@ -2,9 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 import { Set } from "@prisma/client";
 
-
 export async function GET(request: NextRequest) {
-
   const pathname = request.nextUrl.pathname;
   const pathSegments = pathname.split("/");
   const id = pathSegments[pathSegments.length - 2];
