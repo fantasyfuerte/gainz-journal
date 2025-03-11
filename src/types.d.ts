@@ -6,7 +6,7 @@ export type Set = {
 };
 
 export type Training = {
-    id: number;
-    exerciseId: number;
-    date: Date
-}
+  id: number;
+  exerciseId: number;
+  date: Date;
+};
