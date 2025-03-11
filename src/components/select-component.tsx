@@ -1,4 +1,4 @@
-import Select from "react-select";
+import Select, { ActionMeta, SingleValue } from "react-select";
 
 export type Option = { value: string; label: string };
 
@@ -7,6 +7,11 @@ interface Props {
   placeholder: string;
   setValue: (value: string | undefined) => void;
 }
+
+type reactSelectChange = (
+  newValue: SingleValue<Option>,
+  actionMeta: ActionMeta<Option>
+) => void;
 
 function SelectComponent({ options, placeholder, setValue }: Props) {
   const handleChange = (e: Option) => {
@@ -17,7 +22,7 @@ function SelectComponent({ options, placeholder, setValue }: Props) {
   return (
     <Select
       placeholder={placeholder}
-      onChange={handleChange as any}
+      onChange={handleChange as reactSelectChange}
       styles={{
         control: (provided) => ({
           ...provided,
