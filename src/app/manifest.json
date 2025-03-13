@@ -1,0 +1,11 @@
+{
+  "name": "Gainz Journal",
+  "short_name": "GJ",
+  "description": "Track your gym progress, set goals, and achieve your fitness milestones with GainzJournal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#2e7d32",
+  "orientation": "portrait",
+  "categories": ["fitness", "health", "productivity"]
+}
