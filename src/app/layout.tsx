@@ -5,6 +5,7 @@ import NavBar from "@/components/nav-bar";
 export const metadata: Metadata = {
   title: "Gainz Journal",
   description: "A journal for your fitness journey",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased bg-background`}>
+      <body className={`antialiased bg-background select-none`}>
         <header className="z-50">
           <NavBar />
         </header>
