@@ -1,11 +1,17 @@
-import { createContext } from "react";
+import { createContext, ReactNode } from "react";
 
 interface UserContext {
   user: null | string;
 }
 
-const UserContext = createContext<UserContext>({
+export const UserContext = createContext<UserContext>({
   user: null,
 });
 
-export default UserContext;
+export function ContextProvider({ children }: { children: ReactNode }) {
+  return (
+    <UserContext.Provider value={{ user: null }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
