@@ -19,7 +19,6 @@ export function ContextProvider({ children }: { children: ReactNode }) {
       if (data == null || data.user == undefined || data.user.email == null)
         return;
       setUser(data.user.email);
-      alert(data.user.email);
     });
   }, []);
 
