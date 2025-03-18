@@ -3,6 +3,7 @@ import MenuButton from "./menu-button";
 import Link from "next/link";
 import ExerciseList from "./exercise-list";
 import NewExercise from "./new-exercise-link";
+import SignOut from "./sign-out";
 
 async function NavBar() {
   return (
@@ -11,6 +12,7 @@ async function NavBar() {
         <div className="flex flex-col gap-3 py-3 pb-10 px-2 h-full overflow-y-scroll">
           <NewExercise />
           <ExerciseList />
+          <SignOut/>
         </div>
       </MenuButton>
       <Link href="/">
