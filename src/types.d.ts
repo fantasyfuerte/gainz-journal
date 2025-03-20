@@ -10,9 +10,3 @@ export type Training = {
   exerciseId: number;
   date: Date;
 };
-
-export type User = {
-  email: string;
-  name: string;
-  image: string;
-}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Auth } from "@/libs/authActions";
-import { User } from "@/types";
+import { User } from "next-auth";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface UserContext {
@@ -28,6 +28,8 @@ export function ContextProvider({ children }: { children: ReactNode }) {
         setUser(null);
         return;
       }
+      console.log(data.user);
+
       setUser(data.user);
     });
   }, [refreshTrigger]);
