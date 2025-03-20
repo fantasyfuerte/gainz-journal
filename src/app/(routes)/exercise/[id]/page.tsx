@@ -7,15 +7,19 @@ import {
   updateExercise,
 } from "@/libs/fetchs";
 import { redirect, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CgDisc } from "react-icons/cg";
 import { type Exercise } from "@/components/exercise-list";
 import { Capitalize } from "@/libs/utils";
 import WorkoutsList from "@/components/workouts-list";
 import AddWorkOutModal from "@/components/add-workout-modal";
 import { Training } from "@/types";
+import { UserContext } from "@/context/userProvider";
 
 function ExercisePage() {
+  const { user } = useContext(UserContext);
+  if (user == null) redirect("/");
+
   const [exercise, setExercise] = useState<null | Exercise>(null);
   const [description, setDescription] = useState<string>(
     exercise?.description || ""
