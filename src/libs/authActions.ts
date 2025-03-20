@@ -14,7 +14,6 @@ export async function Auth() {
     const existingUser = await prisma.user.findUnique({
       where: { email: session.user.email },
     });
-
     if (!existingUser) {
       await prisma.user.create({
         data: {
@@ -23,6 +22,7 @@ export async function Auth() {
           image: session.user.image,
         },
       });
+      console.log("User Created" + session.user.email);
     }
   } catch (error) {
     console.log(error);
