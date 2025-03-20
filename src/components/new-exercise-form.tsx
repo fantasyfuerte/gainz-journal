@@ -2,11 +2,15 @@
 
 import SelectComponent from "./select-component";
 import { muscles } from "@/../data";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Option } from "./select-component";
 import { redirect } from "next/navigation";
+import { UserContext } from "@/context/userProvider";
 
 function NewExerciseForm() {
+  const { user } = useContext(UserContext);
+  if (user == null) redirect("/");
+
   const [exerciseDescription, setExerciseDescription] = useState<string>(
     "No description provided. Please add a description for your exercise."
   );
