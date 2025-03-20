@@ -1,10 +1,11 @@
 "use client";
 
 import { Auth } from "@/libs/authActions";
+import { User } from "@/types";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface UserContext {
-  user: null | string;
+  user: null | User;
   refresh: () => void;
 }
 
@@ -14,7 +15,7 @@ export const UserContext = createContext<UserContext>({
 });
 
 export function ContextProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<null | string>(null);
+  const [user, setUser] = useState<null | User>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   function refresh() {
@@ -27,7 +28,7 @@ export function ContextProvider({ children }: { children: ReactNode }) {
         setUser(null);
         return;
       }
-      setUser(data.user.email);
+      setUser(data.user);
     });
   }, [refreshTrigger]);
 
