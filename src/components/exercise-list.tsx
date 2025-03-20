@@ -42,7 +42,7 @@ function Exercise({ shorter = false }: Props) {
           <SignIn />
         </div>
       ) : (
-        <ul className="flex flex-col gap-3 font-sans">
+        <ul className="flex flex-col gap-3 font-sans pb-5">
           {exercises == null ? (
             <CgDisc
               className="animate-spin text-primary/80 mx-auto mt-16"
