@@ -6,9 +6,18 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String?
+  email     String     @unique
+  image     String?
+  createdAt DateTime   @default(now())
+  exercises Exercise[]
 }
 
 model Exercise {
@@ -17,6 +26,8 @@ model Exercise {
   createdAt   DateTime   @default(now())
   trainings   Training[]
   description String
+  userId      Int
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Training {
