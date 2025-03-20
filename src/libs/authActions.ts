@@ -8,6 +8,7 @@ export async function HandleSignIn() {
 
 export async function Auth() {
   const session = await auth();
+  console.log(session);
   return session;
 }
 
