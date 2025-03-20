@@ -17,12 +17,17 @@ export async function Auth() {
 
     if (!existingUser) {
       await prisma.user.create({
-        data: { email: session.user.email },
+        data: {
+          email: session.user.email,
+          name: session.user.name,
+          image: session.user.image,
+        },
       });
     }
   } catch (error) {
     console.log(error);
   }
+  return session;
 }
 
 export async function HandleSignOut() {
