@@ -11,7 +11,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { exercise, description } = body;
+    const { exercise, description, email } = body;
 
     if (exercise === undefined || description === undefined)
       return NextResponse.json({ message: "Invalid request body" });
@@ -24,10 +24,19 @@ export async function POST(request: Request) {
 
     if (existingExercise !== null) throw new Error("Exercise already exists");
 
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (user === null) throw new Error("User not found");
+
     const newExercise = await prisma.exercise.create({
       data: {
         name: exercise,
         description: description,
+        userId: user.id,
       },
     });
     return NextResponse.json({
