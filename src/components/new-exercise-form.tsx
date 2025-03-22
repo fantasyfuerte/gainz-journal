@@ -27,6 +27,7 @@ function NewExerciseForm() {
       body: JSON.stringify({
         exercise: exercise,
         description: exerciseDescription,
+        email: user.email,
       }),
     })
       .then((res) => res.json())
