@@ -20,13 +20,14 @@ function NewExerciseForm() {
 
   async function HandleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (muscle === undefined || exercise === undefined) return;
+    if (muscle === undefined || exercise === undefined || user == null) return;
 
     fetch("/api/exercises", {
       method: "POST",
       body: JSON.stringify({
         exercise: exercise,
         description: exerciseDescription,
+        email: user.email,
       }),
     })
       .then((res) => res.json())
