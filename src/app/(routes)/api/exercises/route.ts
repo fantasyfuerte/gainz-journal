@@ -13,7 +13,11 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { exercise, description, email } = body;
 
-    if (exercise === undefined || description === undefined)
+    if (
+      exercise === undefined ||
+      description === undefined ||
+      email === undefined
+    )
       return NextResponse.json({ message: "Invalid request body" });
 
     const existingExercise = await prisma.exercise.findFirst({
