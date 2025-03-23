@@ -28,8 +28,6 @@ export function ContextProvider({ children }: { children: ReactNode }) {
         setUser(null);
         return;
       }
-      console.log(data.user);
-
       setUser(data.user);
     });
   }, [refreshTrigger]);
