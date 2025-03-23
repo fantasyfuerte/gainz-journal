@@ -26,8 +26,9 @@ function Exercise({ shorter = false }: Props) {
   const user = useContext(UserContext).user;
 
   useEffect(() => {
-    if (user === null) return;
-    loadExercises()
+    if (user === null || user.email === undefined || user.email === null)
+      return;
+    loadExercises(user.email)
       .then((data) => {
         if (data.message === "No exercises found") return [];
         return data.sort((a: Exercise, b: Exercise) => b.id - a.id);
