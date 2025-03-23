@@ -52,6 +52,9 @@ export async function POST(request: Request) {
     const existingExercise = await prisma.exercise.findFirst({
       where: {
         name: exercise,
+        user: {
+          email: email,
+        },
       },
     });
 
