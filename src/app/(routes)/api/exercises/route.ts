@@ -1,11 +1,45 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 
-export async function GET() {
-  const exercises = await prisma.exercise.findMany();
-  if (exercises.length === 0)
-    return NextResponse.json({ message: "No exercises found" });
-  return NextResponse.json(exercises);
+export async function GET(request: NextRequest) {
+  try {
+    // Obtener el parámetro 'q' de la URL
+    const encodedEmail = request.nextUrl.searchParams.get("q");
+    if (encodedEmail === null) {
+      return NextResponse.json(
+        { message: "Missing or invalid query parameter 'q'" },
+        { status: 400 }
+      );
+    }
+    const email = decodeURIComponent(encodedEmail);
+
+    // Verificar si el parámetro 'q' existe
+    if (!email) {
+      return NextResponse.json(
+        { message: "Missing or invalid query parameter 'q'" },
+        { status: 400 }
+      );
+    }
+    // Filtrar los ejercicios por el correo electrónico
+    const exercises = await prisma.exercise.findMany({
+      where: {
+        user: {
+          email: email,
+        },
+      },
+    });
+
+    // Si no se encuentran ejercicios, devolver un mensaje apropiado
+    if (exercises.length === 0) {
+      return NextResponse.json({ message: "No exercises found" });
+    }
+
+    // Devolver los ejercicios encontrados
+    return NextResponse.json(exercises);
+  } catch (error) {
+    console.error("Error fetching exercises:", error);
+    return NextResponse.json({ message: "Internal server error" });
+  }
 }
 
 export async function POST(request: Request) {
