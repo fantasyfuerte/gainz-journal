@@ -4,7 +4,7 @@ export const API_BASE_URL =
     : "https://gainzjournal.vercel.app";
 
 export async function loadExercises(email: string) {
-  const response = await fetch(`${API_BASE_URL}/api/exercises/q=${email}`);
+  const response = await fetch(`${API_BASE_URL}/api/exercises/?q=${email}`);
   const data = await response.json();
   return data;
 }
