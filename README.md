@@ -19,4 +19,8 @@ Gainz Journal is an application for logging and tracking weights and repetitions
 - Frontend: Next.js, React, TailwindCSS
 - State Management: useState, useEffect
 - Database: Prisma + PostgreSQL/Supabase
-- Authentication (future): NextAuth
+- Authentication: AuthJS
+
+## 📝 Privacy Policy
+
+https://www.termsfeed.com/live/3f13f95f-293f-4ece-b9a0-a5b4c3475f12
