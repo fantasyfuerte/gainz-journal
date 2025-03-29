@@ -73,7 +73,7 @@ export async function POST(request: Request) {
         name: exercise,
         description: description,
         userId: user.id,
-        createdAt: date,
+        createdAt: new Date(date),
       },
     });
     return NextResponse.json({
