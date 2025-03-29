@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { exercise, description, email } = body;
+    const { exercise, description, email, date } = body;
 
     if (
       exercise === undefined ||
@@ -73,6 +73,7 @@ export async function POST(request: Request) {
         name: exercise,
         description: description,
         userId: user.id,
+        createdAt: date,
       },
     });
     return NextResponse.json({
