@@ -28,6 +28,7 @@ function NewExerciseForm() {
         exercise: exercise,
         description: exerciseDescription,
         email: user.email,
+        date: Date.now(),
       }),
     })
       .then((res) => res.json())
