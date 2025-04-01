@@ -8,7 +8,7 @@ export default function SignIn() {
       className=" text-lg font-bold text-primary flex mx-10 font-sans mt-2"
     >
       <button type="submit" className="rounded-lg bg-button px-3 py-2 grow">
-        Sign In
+        Sign in with Google
       </button>
     </form>
   );
