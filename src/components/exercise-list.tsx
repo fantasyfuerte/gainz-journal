@@ -39,7 +39,7 @@ function Exercise({ shorter = false }: Props) {
   return (
     <>
       {user == null ? (
-        <div>
+        <div className="absolute left-0 w-full">
           <SignIn />
         </div>
       ) : (
