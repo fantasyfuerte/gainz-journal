@@ -37,38 +37,30 @@ function Exercise({ shorter = false }: Props) {
   }, [user]);
 
   return (
-    <>
-      {user == null ? (
-        <div>
-          <SignIn />
-        </div>
+    <ul className="flex flex-col gap-3 font-sans pb-5">
+      {exercises == null ? (
+        <CgDisc
+          className="animate-spin text-primary/80 mx-auto mt-16"
+          size={40}
+        />
+      ) : exercises.length === 0 && shorter ? (
+        <>
+          <Link href="/new" className="flex flex-col">
+            <button className="bg-button rounded-lg py-2 my-3 text-primary">
+              New Exercise
+            </button>
+          </Link>
+        </>
+      ) : exercises.length === 0 ? (
+        <p className="text-primary/80 text-center">No exercises found</p>
       ) : (
-        <ul className="flex flex-col gap-3 font-sans pb-5">
-          {exercises == null ? (
-            <CgDisc
-              className="animate-spin text-primary/80 mx-auto mt-16"
-              size={40}
-            />
-          ) : exercises.length === 0 && shorter ? (
-            <>
-              <Link href="/new" className="flex flex-col">
-                <button className="bg-button rounded-lg py-2 my-3 text-primary">
-                  New Exercise
-                </button>
-              </Link>
-            </>
-          ) : exercises.length === 0 ? (
-            <p className="text-primary/80 text-center">No exercises found</p>
-          ) : (
-            exercises
-              ?.slice(0, shorter ? 3 : undefined)
-              .map((exercise: Exercise) => (
-                <ExerciseCard exercise={exercise} key={exercise.id} />
-              ))
-          )}
-        </ul>
+        exercises
+          ?.slice(0, shorter ? 3 : undefined)
+          .map((exercise: Exercise) => (
+            <ExerciseCard exercise={exercise} key={exercise.id} />
+          ))
       )}
-    </>
+    </ul>
   );
 }
 
