@@ -61,7 +61,7 @@ function ExercisePage() {
       setDescription(data.description);
     });
     refresh();
-  }, [id, refreshTrigger, refresh]);
+  }, [id, refreshTrigger]);
 
   useEffect(() => {
     if (exercise?.description == description) setSaveButtonVisible(false);
