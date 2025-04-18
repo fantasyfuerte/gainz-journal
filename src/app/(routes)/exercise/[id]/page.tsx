@@ -78,7 +78,7 @@ function ExercisePage() {
   if (id == undefined) return <div>Not Found.</div>;
 
   return (
-    <main className="bg-background pb-20 pt-16 px-7 md:px-60 lg:px-80">
+    <main className="pb-20 pt-16 px-7 md:px-60 lg:px-80 min-h-screen">
       {exercise === null ? (
         <CgDisc
           className="animate-spin text-primary/80 mx-auto mt-10"

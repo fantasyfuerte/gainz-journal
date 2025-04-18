@@ -10,7 +10,7 @@ const zendots = Zen_Dots({
 export default function Home() {
   return (
     <main
-      className={`${zendots.className} bg-background h-screen flex flex-col items-center justify-center gap-3`}
+      className={`${zendots.className} h-screen flex flex-col items-center justify-center gap-3`}
     >
       <div className="flex items-center justify-center">
         <h1

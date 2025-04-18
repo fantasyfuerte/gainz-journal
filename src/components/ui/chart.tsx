@@ -14,7 +14,7 @@ function Chart({ data }: Props) {
   }));
 
   return (
-    <div className="max-w-96 mx-auto">
+    <div className="max-w-96 mx-auto shadow-custom">
       <VictoryChart
         style={{
           parent: {
@@ -39,7 +39,7 @@ function Chart({ data }: Props) {
           style={{
             data: {
               fill: "#7f5af0",
-              fillOpacity: 0.4,
+              fillOpacity: 1,
               stroke: "#7f5af0",
               strokeWidth: 4,
               zIndex: 1,
