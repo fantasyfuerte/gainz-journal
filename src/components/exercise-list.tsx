@@ -1,11 +1,11 @@
 "use client";
 
-import ExerciseCard from "./exercise-card";
+import ExerciseCard from "./ui/exercise-card";
 import Link from "next/link";
 import { useContext } from "react";
 import { CgDisc } from "react-icons/cg";
 import { UserContext } from "@/context/userProvider";
-import SignIn from "./sign-in";
+import SignIn from "./ui/sign-in";
 import { useData } from "@/context/dataProvider";
 
 export type Exercise = {
