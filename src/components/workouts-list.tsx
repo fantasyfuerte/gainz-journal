@@ -1,9 +1,9 @@
-import WorkOutCard from "@/components/workout-card";
+import WorkOutCard from "@/components/ui/workout-card";
 import { deleteWorkout, loadManySets } from "@/libs/fetchs";
 import { Set, Training } from "@/types";
 import { useEffect, useState } from "react";
 import { CgChevronLeft, CgTrashEmpty } from "react-icons/cg";
-import Chart from "./chart";
+import Chart from "./ui/chart";
 
 interface Props {
   trainings: null | Training[];

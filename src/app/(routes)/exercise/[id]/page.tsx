@@ -42,6 +42,12 @@ function ExercisePage() {
     setIsModalOpen(false);
   }
 
+  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setDescription(e.target.value);
+    if (description !== exercise?.description) setSaveButtonVisible(true);
+    else setSaveButtonVisible(false);
+  }
+
   async function handleDelete() {
     if (!confirm("Are you sure you want to delete this exercise?")) return;
     deleteExercise(Number(id));
@@ -61,12 +67,7 @@ function ExercisePage() {
       setDescription(data.description);
     });
     refresh();
-  }, [id, refreshTrigger, refresh]);
-
-  useEffect(() => {
-    if (exercise?.description == description) setSaveButtonVisible(false);
-    else setSaveButtonVisible(true);
-  }, [description, exercise]);
+  }, [id, refreshTrigger]);
 
   useEffect(() => {
     loadTrainings(Number(id)).then((data) => {
@@ -95,7 +96,7 @@ function ExercisePage() {
           <textarea
             className="text-secondary/75 mt-2 text-sm pr-5 bg-transparent w-full outline-none"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={handleChange}
           ></textarea>
           <WorkoutsList
             refreshTrigger={refreshTrigger2}
