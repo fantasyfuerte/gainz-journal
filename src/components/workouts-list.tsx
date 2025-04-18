@@ -1,4 +1,4 @@
-import WorkOutCard from "@/components/workout-card";
+import WorkOutCard from "@/components/ui/workout-card";
 import { deleteWorkout, loadManySets } from "@/libs/fetchs";
 import { Set, Training } from "@/types";
 import { useEffect, useState } from "react";
