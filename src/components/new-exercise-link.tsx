@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "@/context/userProvider";
 
 function NewExercise() {
-  const user = useContext(UserContext).user;
+  const {user} = useContext(UserContext);
 
   if (user == null) return <></>;
 
