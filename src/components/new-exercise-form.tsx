@@ -1,9 +1,9 @@
 "use client";
 
-import SelectComponent from "./select-component";
+import SelectComponent from "./ui/select-component";
 import { muscles } from "@/../data";
 import { useContext, useEffect, useState } from "react";
-import { Option } from "./select-component";
+import { Option } from "./ui/select-component";
 import { redirect } from "next/navigation";
 import { UserContext } from "@/context/userProvider";
 
