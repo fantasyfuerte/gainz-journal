@@ -52,7 +52,7 @@ function Exercise({ shorter = false }: Props) {
           ) : exercises.length === 0 && shorter ? (
             <>
               <Link href="/new" className="flex flex-col">
-                <button className="bg-button rounded-lg py-2 my-3 text-primary">
+                <button className="bg-button rounded-lg py-2 my-3 text-primary font-semibold">
                   New Exercise
                 </button>
               </Link>

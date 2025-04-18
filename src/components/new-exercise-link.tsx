@@ -11,7 +11,9 @@ function NewExercise() {
 
   return (
     <Link href="/new" className="flex flex-col">
-      <button className="bg-button rounded-lg py-2 my-3">New Exercise</button>
+      <button className="bg-button rounded-lg py-2 my-3 font-semibold">
+        New Exercise
+      </button>
     </Link>
   );
 }
