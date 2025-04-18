@@ -1,12 +1,12 @@
 "use client";
 
 import ExerciseCard from "./exercise-card";
-import { loadExercises } from "@/libs/fetchs";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CgDisc } from "react-icons/cg";
 import { UserContext } from "@/context/userProvider";
 import SignIn from "./sign-in";
+import { useData } from "@/context/dataProvider";
 
 export type Exercise = {
   id: number;
@@ -22,20 +22,8 @@ interface Props {
 }
 
 function Exercise({ shorter = false }: Props) {
-  const [exercises, setExercises] = useState<Exercise[] | null>(null);
-  const user = useContext(UserContext).user;
-
-  useEffect(() => {
-    if (user === null || user.email === undefined || user.email === null)
-      return;
-    loadExercises(user.email)
-      .then((data) => {
-        if (data.message === "No exercises found") return [];
-        return data.sort((a: Exercise, b: Exercise) => b.id - a.id);
-      })
-      .then(setExercises);
-  }, [user]);
-
+  const { exercises } = useData();
+  const { user } = useContext(UserContext);
   return (
     <>
       {user == null ? (

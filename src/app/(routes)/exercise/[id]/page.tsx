@@ -15,6 +15,7 @@ import WorkoutsList from "@/components/workouts-list";
 import AddWorkOutModal from "@/components/add-workout-modal";
 import { Training } from "@/types";
 import { UserContext } from "@/context/userProvider";
+import { useData } from "@/context/dataProvider";
 
 function ExercisePage() {
   const { user } = useContext(UserContext);
@@ -31,6 +32,7 @@ function ExercisePage() {
   const [refreshTrigger2, setRefreshTrigger2] = useState(false);
 
   const { id } = useParams();
+  const { refresh } = useData();
 
   function openModal() {
     setIsModalOpen(true);
@@ -58,7 +60,8 @@ function ExercisePage() {
       setExercise(data);
       setDescription(data.description);
     });
-  }, [id, refreshTrigger]);
+    refresh();
+  }, [id, refreshTrigger, refresh]);
 
   useEffect(() => {
     if (exercise?.description == description) setSaveButtonVisible(false);

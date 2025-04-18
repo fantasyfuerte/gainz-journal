@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/nav-bar";
 import { ContextProvider } from "@/context/userProvider";
+import { DataProvider } from "@/context/dataProvider";
 
 export const metadata: Metadata = {
   title: "Gainz Journal",
@@ -18,10 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased bg-background select-none`}>
         <ContextProvider>
-          <header className="z-50">
-            <NavBar />
-          </header>
-          <div className="z-10">{children}</div>
+          <DataProvider>
+            <header className="z-50">
+              <NavBar />
+            </header>
+            <div className="z-10">{children}</div>
+          </DataProvider>
         </ContextProvider>
       </body>
     </html>
