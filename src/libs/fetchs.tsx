@@ -1,6 +1,6 @@
 export const API_BASE_URL =
   process.env.NODE_ENV === "development"
-    ? process.env.NEXT_PUBLIC_API_BASE_URL
+    ? "http://localhost:3000"
     : "https://gainzjournal.vercel.app";
 
 export async function loadExercises(email: string) {
