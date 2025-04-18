@@ -1,9 +1,8 @@
 "use client";
 
 import ExerciseCard from "./exercise-card";
-import { loadExercises } from "@/libs/fetchs";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CgDisc } from "react-icons/cg";
 import { UserContext } from "@/context/userProvider";
 import SignIn from "./sign-in";
