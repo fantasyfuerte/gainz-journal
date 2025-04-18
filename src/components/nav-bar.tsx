@@ -1,5 +1,5 @@
 import { CgHomeAlt } from "react-icons/cg";
-import MenuButton from "./menu-button";
+import MenuButton from "./ui/menu-button";
 import Link from "next/link";
 import ExerciseList from "./exercise-list";
 import NewExercise from "./ui/new-exercise-link";
