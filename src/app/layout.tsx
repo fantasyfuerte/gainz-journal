@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased bg-gradient-to-br from-background via-60% to-button select-none`}
+        className={`antialiased bg-gradient-to-br from-background via-60% to-[#573da4] select-none`}
       >
         <ContextProvider>
           <DataProvider>
