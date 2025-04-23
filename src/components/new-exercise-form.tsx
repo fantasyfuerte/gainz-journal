@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { Option } from "./ui/select-component";
 import { redirect } from "next/navigation";
 import { UserContext } from "@/context/userProvider";
+import { CgDisc } from "react-icons/cg";
 
 function NewExerciseForm() {
   const { user } = useContext(UserContext);
@@ -17,11 +18,12 @@ function NewExerciseForm() {
   const [muscle, setMuscle] = useState<string | undefined>(undefined);
   const [exercises, setExercises] = useState<Option[]>([]);
   const [exercise, setExercise] = useState<string | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function HandleForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (muscle === undefined || exercise === undefined || user == null) return;
-
+    setIsLoading(true);
     fetch("/api/exercises", {
       method: "POST",
       body: JSON.stringify({
@@ -35,6 +37,7 @@ function NewExerciseForm() {
       .then((res) => {
         if (res.status == 404) {
           alert(res.message);
+          setIsLoading(false);
           return;
         }
         redirect(`/exercise/${res.id}`);
@@ -84,10 +87,15 @@ function NewExerciseForm() {
         onChange={(e) => setExerciseDescription(e.target.value)}
       />
       <button
+        disabled={muscle === undefined || exercise === undefined || isLoading}
         type="submit"
         className="bg-button text-lg text-primary font-bold rounded-lg py-2 px-4 mt-12 self-end"
       >
-        Save exercise
+        {isLoading ? (
+          <CgDisc size={30} className="animate-spin text-primary" />
+        ) : (
+          "Save Exercise"
+        )}
       </button>
     </form>
   );
